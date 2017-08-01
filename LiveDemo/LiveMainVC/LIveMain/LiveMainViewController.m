@@ -31,14 +31,13 @@
     [self.view addSubview:[self closePlayerBtn]];
     
     // 设置直播占位图片
+    self.imageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
     NSURL *imageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@",_live.creator.portrait]];
     [self.imageView sd_setImageWithURL:imageUrl placeholderImage:nil];
+    _imageView.contentMode = UIViewContentModeScaleAspectFill;
     [_scrollView addSubview:_imageView];
     
-
-    [_scrollView addSubview:self.player.view];
-    
-    
+    [_scrollView insertSubview:self.player.view atIndex:1];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
