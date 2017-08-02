@@ -87,7 +87,8 @@ static NSString * const ID = @"cell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"----------------");
     LiveMainViewController *mainvc = [[LiveMainViewController alloc]init];
-    mainvc.live = _lives[indexPath.row];
+//    mainvc.live = _lives[indexPath.row];
+    [mainvc setDataSource:_lives curIndex:indexPath.row];
     [self presentViewController:mainvc animated:YES completion:nil];
   
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3039E6071F3177ED00744DC5 /* RoomImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3039E6061F3177ED00744DC5 /* RoomImageView.m */; };
 		3071BA201F306B88005493FE /* YZCreatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3071BA191F306B88005493FE /* YZCreatorItem.m */; };
 		3071BA211F306B88005493FE /* YZLiveItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3071BA1B1F306B88005493FE /* YZLiveItem.m */; };
 		3071BA221F306B88005493FE /* YZLiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3071BA1E1F306B88005493FE /* YZLiveCell.m */; };
@@ -95,6 +96,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3039E6051F3177ED00744DC5 /* RoomImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomImageView.h; sourceTree = "<group>"; };
+		3039E6061F3177ED00744DC5 /* RoomImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomImageView.m; sourceTree = "<group>"; };
 		3071BA181F306B88005493FE /* YZCreatorItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZCreatorItem.h; sourceTree = "<group>"; };
 		3071BA191F306B88005493FE /* YZCreatorItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZCreatorItem.m; sourceTree = "<group>"; };
 		3071BA1A1F306B88005493FE /* YZLiveItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZLiveItem.h; sourceTree = "<group>"; };
@@ -265,6 +268,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3039E6041F3177D100744DC5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3039E6051F3177ED00744DC5 /* RoomImageView.h */,
+				3039E6061F3177ED00744DC5 /* RoomImageView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		3071BA161F306B71005493FE /* LiveListVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -332,6 +344,7 @@
 				3071BA471F307366005493FE /* LiveMainViewController.m */,
 				3071BA4B1F3083ED005493FE /* LiveSubViewController.h */,
 				3071BA4C1F3083ED005493FE /* LiveSubViewController.m */,
+				3039E6041F3177D100744DC5 /* View */,
 			);
 			path = LIveMain;
 			sourceTree = "<group>";
@@ -684,6 +697,7 @@
 				309DD8D71F302BDD000CB180 /* UserLiveViewController.m in Sources */,
 				30A95A111F2ECB0F00DD9F4D /* NSArray+MASAdditions.m in Sources */,
 				3071BA431F306BA8005493FE /* NSString+MJExtension.m in Sources */,
+				3039E6071F3177ED00744DC5 /* RoomImageView.m in Sources */,
 				30A95AA11F2ED32F00DD9F4D /* UIView+WebCacheOperation.m in Sources */,
 				30A959C31F2ECAB500DD9F4D /* ViewController.m in Sources */,
 				30A95A9A1F2ED32F00DD9F4D /* SDWebImageManager.m in Sources */,

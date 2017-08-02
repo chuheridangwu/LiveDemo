@@ -7,9 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class YZLiveItem;
 
 @interface LiveMainViewController : UIViewController
-@property (nonatomic, strong) YZLiveItem *live;
-
+- (void)setDataSource:(NSArray*)source  curIndex:(NSInteger)curIndex;
 @end

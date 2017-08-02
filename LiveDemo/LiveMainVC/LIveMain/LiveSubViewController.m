@@ -7,9 +7,13 @@
 //
 
 #import "LiveSubViewController.h"
+#import <IJKMediaFramework/IJKMediaFramework.h>
+
 
 @interface LiveSubViewController ()<UIScrollViewDelegate>
-@property (nonatomic,strong)UIScrollView *scrollView;
+
+@property (nonatomic, strong) IJKFFMoviePlayerController *player;
+
 @end
 
 @implementation LiveSubViewController
@@ -17,20 +21,54 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self.view addSubview:self.player.view];
 }
 
 
-- (UIScrollView*)scrollView{
-    if (!_scrollView) {
-        _scrollView = [[UIScrollView alloc]initWithFrame:self.view.bounds];
-        _scrollView.delegate = self;
-        _scrollView.pagingEnabled = YES;
-        _scrollView.showsVerticalScrollIndicator = NO;
-        _scrollView.showsHorizontalScrollIndicator = NO;
-        _scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height * 3);
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    // 界面消失，一定要记得停止播放
+    [_player pause];
+    [_player stop];
+    [_player shutdown];
+    _player = nil;
+}
+
+
+- (void)endLive{
+    // 界面消失，一定要记得停止播放
+    [_player pause];
+    [_player stop];
+    [_player shutdown];
+    _player = nil;
+}
+
+
+- (IJKFFMoviePlayerController *)player{
+    if (!_player) {
+        // 拉流地址
+        NSURL *url = [NSURL URLWithString:_liveURL];
+        
+        // 创建IJKFFMoviePlayerController：专门用来直播，传入拉流地址就好了
+        IJKFFMoviePlayerController *playerVc = [[IJKFFMoviePlayerController alloc] initWithContentURL:url withOptions:nil];
+        
+        // 准备播放
+        [playerVc prepareToPlay];
+        
+        
+        playerVc.view.frame = [UIScreen mainScreen].bounds;
+        
+        // 强引用，反正被销毁
+        _player = playerVc;
+        
     }
-    return _scrollView;
+    return _player;
 }
+
 
 
 - (void)didReceiveMemoryWarning {
