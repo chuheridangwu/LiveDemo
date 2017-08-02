@@ -144,6 +144,9 @@
 #pragma mark  --- lazy -----
 
 - (void)backVC{
+    if (_liveSubVC) {
+        [_liveSubVC endLive];
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -151,7 +154,7 @@
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
     [btn addTarget:self action:@selector(backVC) forControlEvents:UIControlEventTouchUpInside];
     [btn setBackgroundImage:[UIImage imageNamed:@"roomPhone_icon_close"] forState:UIControlStateNormal];
-    btn.frame = CGRectMake(self.view.frame.size.width - 40, self.view.frame.size.height - 40, 30, 30);
+    btn.frame = CGRectMake(self.view.frame.size.width - 50, self.view.frame.size.height - 50, 35, 35);
     return btn;
 }
 

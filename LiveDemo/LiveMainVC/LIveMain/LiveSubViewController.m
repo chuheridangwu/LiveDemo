@@ -7,6 +7,7 @@
 //
 
 #import "LiveSubViewController.h"
+#import "AdmireAnimationView.h"
 #import <IJKMediaFramework/IJKMediaFramework.h>
 
 
@@ -14,18 +15,12 @@
 
 @property (nonatomic, strong) IJKFFMoviePlayerController *player;
 
+@property (nonatomic, strong) UIView *clearBgView;  //可以被清除的View
+@property (nonatomic, strong) AdmireAnimationView *admireAnimationView;
+
 @end
 
 @implementation LiveSubViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    [self.view addSubview:self.player.view];
-}
-
-
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -38,6 +33,47 @@
     _player = nil;
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
+    [self.view addSubview:self.player.view];
+    
+    [self.view addSubview:self.clearBgView];
+    
+    _admireAnimationView = [[AdmireAnimationView alloc]initWithSuperView:self.view];
+
+}
+
+
+
+#pragma mark   --   点赞动画
+- (void)tapAndima{
+    [_admireAnimationView startWithLevel:1 number:1];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 - (void)endLive{
     // 界面消失，一定要记得停止播放
@@ -46,7 +82,6 @@
     [_player shutdown];
     _player = nil;
 }
-
 
 - (IJKFFMoviePlayerController *)player{
     if (!_player) {
@@ -69,6 +104,17 @@
     return _player;
 }
 
+
+- (UIView*)clearBgView{
+    if (!_clearBgView) {
+        _clearBgView = [[UIView alloc]initWithFrame:self.view.bounds];
+        _clearBgView.backgroundColor = [UIColor clearColor];
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAndima)];
+        [_clearBgView addGestureRecognizer:tap];
+    }
+    return _clearBgView;
+}
 
 
 - (void)didReceiveMemoryWarning {
