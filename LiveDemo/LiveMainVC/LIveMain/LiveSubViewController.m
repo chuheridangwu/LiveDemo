@@ -16,9 +16,11 @@
 @interface LiveSubViewController ()<UIScrollViewDelegate,UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) IJKFFMoviePlayerController *player;
+@property (nonatomic, assign) BOOL                  clearViewShow;        //标记是否清爽模式
 
-@property (nonatomic, strong) UIView *clearBgView;  //可以被清除的View
+@property (nonatomic, strong) UIView *clearBgView;  //滑动的View
 @property (nonatomic, strong) AdmireAnimationView *admireAnimationView;
+
 
 @end
 
@@ -56,7 +58,11 @@
     [btn addTarget:self action:@selector(clickBtn) forControlEvents:UIControlEventTouchDown];
     
     
+ 
     
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(clearViewMoveToLeft:)];
+    pan.delegate = self;
+    [self.view addGestureRecognizer:pan];
     
 }
 
@@ -83,20 +89,65 @@
 }
 
 #pragma mark -- 清爽模式下左滑
-- (void)panClearBgViewView:(UIPanGestureRecognizer*)pan{
-    CGPoint point = [pan translationInView:self.clearBgView];
+- (void)clearViewMoveToLeft:(UIPanGestureRecognizer*)pan{
+    CGPoint point = [pan translationInView:self.view];
     NSLog(@"%ld", pan.state);
     if (point.y / point.x > 1 || point.y / point.x < -1) {
         
+    }
+    if (point.x < 0 && !_clearViewShow) {
+        switch (pan.state) {
+            case UIGestureRecognizerStateBegan:
+                
+                break;
+            case UIGestureRecognizerStateChanged:
+            {
+                _clearBgView.center = CGPointMake(SCREEN_WIDTH + SCREEN_WIDTH / 2 + point.x, _clearBgView.center.y);
+            }
+                break;
+                case UIGestureRecognizerStateEnded:
+                
+            {
+                [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                    _clearBgView.center = CGPointMake(_clearBgView.center.x > SCREEN_WIDTH * 5 / 4 ? SCREEN_WIDTH + SCREEN_WIDTH / 2 : SCREEN_WIDTH - SCREEN_WIDTH / 2, _clearBgView.center.y);
+                } completion:^(BOOL finished) {
+                    _clearViewShow = _clearBgView.center.x < SCREEN_WIDTH;
+                }];
+            }
+                break;
+            default:
+                break;
+        }
     }
     
     
 }
 
 
-#pragma mark   ----  清爽模式
-- (void)panClearBgViewView{
-
+#pragma mark   ----  清爽模式移动
+- (void)clearViewMoveAnimate:(UIPanGestureRecognizer*)pan{
+    CGPoint point = [pan translationInView:self.view];
+    NSLog(@"%ld",pan.state);
+    switch (pan.state) {
+        case UIGestureRecognizerStateChanged:
+        {
+            if (point.x >= 0) {
+                _clearBgView.center = CGPointMake(SCREEN_WIDTH / 2 + point.x, _clearBgView.center.y);
+            }
+        }
+            break;
+            case UIGestureRecognizerStateEnded:
+        {
+            [UIView animateWithDuration:0.2 animations:^{
+                _clearBgView.center = CGPointMake(_clearBgView.center.x > SCREEN_WIDTH * 3 / 4 ? SCREEN_WIDTH + SCREEN_WIDTH / 2 : SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+            } completion:^(BOOL finished) {
+                _clearViewShow = _clearBgView.center.x < SCREEN_WIDTH;
+            }];
+        }
+            
+        default:
+            break;
+    }
 }
 
 
@@ -136,13 +187,11 @@
     if (!_clearBgView) {
         _clearBgView = [[UIView alloc]initWithFrame:self.view.bounds];
         _clearBgView.backgroundColor = [UIColor clearColor];
-        
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAndima)];
-        [_clearBgView addGestureRecognizer:tap];
-        
-        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panClearBgViewView:)];
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(clearViewMoveAnimate:)];
         pan.delegate = self;
         [_clearBgView addGestureRecognizer:pan];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAndima)];
+        [_clearBgView addGestureRecognizer:tap];
     }
     return _clearBgView;
 }

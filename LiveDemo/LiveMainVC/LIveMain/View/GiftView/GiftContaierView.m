@@ -67,6 +67,8 @@ static GiftContaierView *gGiftContainer = nil;
 - (void)showNextGift{
     Gift *gift = [[Gift alloc]init];
     [self showNextGift:gift];
+    
+    [self showLuckView];
 }
 
 - (void)showNextGift:(Gift *)preGift
@@ -87,8 +89,6 @@ static GiftContaierView *gGiftContainer = nil;
         return;
     }
     
-  
-   
     
     for (int i = 0; i < [Room currentRoom].allowDisplayCount; i++) {
         if (i >= [_giftViewAry count]) {
@@ -102,5 +102,17 @@ static GiftContaierView *gGiftContainer = nil;
     }
     
 }
+
+// 显示中奖视图
+- (void)showLuckView{
+    for (int i = 0; i < [_giftViewAry count]; i++) {
+        MobileGiftView *giftView = [_giftViewAry objectAtIndex:i];
+        if (arc4random()%4 == i) {
+           [giftView showLuckyView];
+            break;
+        }
+   }
+}
+
 
 @end

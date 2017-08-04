@@ -13,6 +13,6 @@
 - (void)showWithGift:(Gift *)gift;
 
 
-
+- (void)showLuckyView;
 
 @end

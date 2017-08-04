@@ -137,15 +137,15 @@
     _giftImageUrl = @"https://mimtenroom.tiao58.com/item/305_m_121413.png";
     [_headerBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:_giftImageUrl] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"giftViewBg"]];
 //    _headerBtn.layer.borderColor = [];
-    _sendNameLabel.attributedText = [MobileGiftView stringWithShadowWithString:@"11111" shadowColor:[UIColor colorWithWhite:0 alpha:0.4] fontSize:14];
+    _sendNameLabel.attributedText = [MobileGiftView stringWithShadowWithString:@"这是一个发送者的昵称" shadowColor:[UIColor colorWithWhite:0 alpha:0.4] fontSize:14];
     [_sendNameLabel sizeToFit];
     _sendNameLabel.frame = CGRectMake(0, 0, CGRectGetWidth(_sendNameLabel.bounds), 16);
     
-    _reciveNameLabel.attributedText = [MobileGiftView stringWithShadowWithString:@"222" shadowColor:[UIColor colorWithWhite:0 alpha:0.4] fontSize:11];
+    _reciveNameLabel.attributedText = [MobileGiftView stringWithShadowWithString:@"接收礼物的主播111" shadowColor:[UIColor colorWithWhite:0 alpha:0.4] fontSize:11];
     [_reciveNameLabel sizeToFit];
     _reciveNameLabel.frame = CGRectMake(0, 0, CGRectGetWidth(_reciveNameLabel.bounds), 13);
     
-    _sendLabel.attributedText = [MobileGiftView stringWithShadowWithString:@"333" shadowColor:[UIColor colorWithWhite:0 alpha:0.4] fontSize:14];
+    _sendLabel.attributedText = [MobileGiftView stringWithShadowWithString:@"送" shadowColor:[UIColor colorWithWhite:0 alpha:0.4] fontSize:14];
     
     [_giftImage sd_setImageWithURL:[NSURL URLWithString:_giftImageUrl]];
     _layerBgView.image =/* DISABLES CODE */ (NO)  ?[UIImage imageNamed:@"giftViewBgMe"]:[UIImage imageNamed:@"giftViewBg"];
@@ -400,6 +400,67 @@
     }
 }
 
+
+#pragma mark   -------  中奖的动画
+- (void)showLuckyView{
+    if (_winView) {
+        return;
+    }
+        if (_startTimeInterval > 0) {
+            [self startTimer];
+        }
+    
+        _winView = [self createLuckyWinShowView:1000];
+        [self addSubview:_winView];
+        if (/* DISABLES CODE */ (1000) >= 500) {
+            _winView.center = CGPointMake(_winView.center.x, _winView.center.y - 150);
+            _winView.transform = CGAffineTransformMakeScale(4, 4);
+            [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+                _winView.center = CGPointMake(_winView.center.x, _winView.center.y + 150);
+                _winView.transform = CGAffineTransformMakeScale(0.6, 0.6);
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:0.1 animations:^{
+                    _winView.transform = CGAffineTransformMakeScale(1.2, 1.2);
+                }completion:^(BOOL finished)
+                 {
+                     [UIView animateWithDuration:0.1 animations:^{
+                         _winView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+                     }];
+                     _awadBg.hidden = NO;
+                     _awadBg.center = CGPointMake(CGRectGetMinX(_winView.frame) + CGRectGetWidth(_winView.frame)/2, CGRectGetMinY(_winView.frame) + CGRectGetHeight(_winView.frame)/2);
+                         [self sbAnimation];
+                     
+                     [UIView animateWithDuration:2.0 animations:^{
+                         _awadBg.transform = CGAffineTransformRotate(_awadBg.transform, M_PI / 2);
+                     }completion:^(BOOL finished) {
+                         _awadBg.hidden = YES;
+                         [_winView removeFromSuperview];
+                         _winView = nil;
+                     }];
+                     
+                 }];
+            }];
+        }
+        else {
+            _winView.frame = CGRectMake(32.5, 44, 135, 33);
+            _winView.transform = CGAffineTransformMakeScale(1.5, 1.5);
+            [UIView animateWithDuration:0.2 animations:^{
+                _winView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+            }completion:^(BOOL finished) {
+                
+            }];
+            [UIView animateWithDuration:0.2 delay:1000 >= 500 ? 1.8 : 1.8 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                _winView.alpha = 0;
+            } completion:^(BOOL finished) {
+                [_winView removeFromSuperview];
+                _winView = nil;
+            }];
+        }
+    
+}
+
+
+
 + (NSMutableAttributedString*)stringWithShadowWithString:(NSString*)string shadowColor:(UIColor*)color fontSize:(CGFloat)font
 {
     if (!color) {
@@ -419,6 +480,101 @@
     [attributString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:font > 0 ? font : 14] range:NSMakeRange(0, attributString.length)];
     [attributString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:range];
     return attributString;
+}
+
+
+- (UIView *)createLuckyWinShowView:(NSInteger)count
+{
+    if (count >= 500) {
+        UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake((CGRectGetWidth(self.frame) - 175)/2, 10, 175, 100)];
+        [img setImage:[UIImage imageNamed:@"congratulation"]];
+        
+        UIView *countView = [[UIView alloc] init];
+        [countView setBackgroundColor:[UIColor clearColor]];
+        NSString *countStr = [NSString stringWithFormat:@"%@", @(count)];
+        CGRect rect = CGRectMake(0, 0, 12, 20);
+        for (int i = 0; i < countStr.length; i++) {
+            UIImageView *num = [[UIImageView alloc] initWithFrame:rect];
+            [num setImage:[UIImage imageNamed:[NSString stringWithFormat:@"Number.bundle/y%@.png", [countStr substringWithRange:NSMakeRange(i, 1)]]]];
+            [countView addSubview:num];
+            rect.origin.x += CGRectGetWidth(rect) + 2;
+        }
+        rect.size.width = 18;
+        UIImageView *countImg = [[UIImageView alloc] initWithFrame:rect];
+        [countImg setImage:[UIImage imageNamed:@"Number.bundle/ycount.png"]];
+        [countView addSubview:countImg];
+        [countView setFrame:CGRectMake((CGRectGetWidth(img.frame) - CGRectGetMaxX(rect))/2, 64, CGRectGetMaxX(rect), CGRectGetHeight(rect))];
+        [img addSubview:countView];
+        
+        return img;
+    }
+    else {
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(- 135, 44, 135, 33)];
+        UILabel *label = [[UILabel alloc]initWithFrame:view.bounds];
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc]init];
+        UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 6.5, 110, 20)];
+        bgView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.1];
+        bgView.layer.cornerRadius = 10;
+        bgView.layer.masksToBounds = YES;
+        bgView.layer.borderColor = [UIColorFromRGBWithAlpha(0xffcc00, 1)CGColor];
+        bgView.layer.borderWidth = 1;
+        [view addSubview:bgView];
+        [label bringSubviewToFront:bgView];
+        [str insertAttributedString:[[NSAttributedString alloc]initWithString:[NSString stringWithFormat:NSLocalizedString(@"LR_Win3", @""),@(count)]] atIndex:0];
+        [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(0, str.length)];
+        [str addAttribute:NSForegroundColorAttributeName value:UIColorFromRGBWithAlpha(0xffcc00, 1) range:NSMakeRange(0, str.length)];
+        label.textAlignment = NSTextAlignmentLeft;
+        label.attributedText = str;
+        [view addSubview:label];
+        
+        return view;
+    }
+    
+    return nil;
+}
+/**
+ *  撒币效果
+ */
+- (void)sbAnimation
+{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        int count = 50;
+        while (count > 0)//循环50次
+        {
+            count --;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                int width = arc4random() % 15;
+                UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake(- 50,0, 20 + width, 20 + width)];
+                img.image = [UIImage imageNamed:@"sbCoin"];
+                [self.superview.superview addSubview:img];
+                int x = arc4random() % (100);
+                CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+                CGRect rect = [(CALayer*)[_awadBg.layer presentationLayer] frame];
+                //UIBezierPath贝塞尔曲线
+                CGPoint center = CGPointMake(CGRectGetMinX(rect) + CGRectGetWidth(rect)/2, CGRectGetMinY(rect) + CGRectGetHeight(rect)/2);
+                UIBezierPath *path = [UIBezierPath bezierPath];
+                [path moveToPoint:CGPointMake(center.x + CGRectGetMinX(self.superview.frame) - 50 + x, center.y + CGRectGetMinY(self.frame)+CGRectGetMinY(self.superview.frame))];
+                
+                //在路径上添加一条贝塞尔曲线
+                CGFloat scale = (SCREEN_WIDTH ) / 100;
+                //在路径上添加一条曲线，需要指定路径经过点。
+                CGFloat y = SCREEN_HEIGHT - 150;//快捷送礼相对纵坐标
+                [path addQuadCurveToPoint:CGPointMake(SCREEN_WIDTH - 70 + x * 0.2, y) controlPoint:CGPointMake(x * scale,- 250)];
+                animation.removedOnCompletion = YES;
+                animation.duration = 2;
+                animation.path = path.CGPath;
+                [img.layer addAnimation:animation forKey:@"curve"];
+                //延迟变小动画
+                [UIView animateWithDuration:1 delay:1 options:UIViewAnimationOptionCurveLinear animations:^{
+                    img.transform = CGAffineTransformMakeScale(0.5, 0.5);
+                } completion:^(BOOL finished)
+                 {
+                     [img removeFromSuperview];
+                 }];
+            });
+            [NSThread sleepForTimeInterval:0.02];//每个币延时0.02s发出
+        }
+    });
 }
 
 @end
