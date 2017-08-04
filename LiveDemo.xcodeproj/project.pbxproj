@@ -33,6 +33,7 @@
 		3039E6541F31DBAD00744DC5 /* MobileGiftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3039E6531F31DBAD00744DC5 /* MobileGiftView.m */; };
 		304AF6C21F330E4400337BAF /* Number.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 304AF6C11F330E4400337BAF /* Number.bundle */; };
 		304AF6C51F3322F100337BAF /* Gift.m in Sources */ = {isa = PBXBuildFile; fileRef = 304AF6C41F3322F100337BAF /* Gift.m */; };
+		304AF6C81F34454A00337BAF /* RightAnchorListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 304AF6C71F34454A00337BAF /* RightAnchorListView.m */; };
 		3071BA201F306B88005493FE /* YZCreatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3071BA191F306B88005493FE /* YZCreatorItem.m */; };
 		3071BA211F306B88005493FE /* YZLiveItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3071BA1B1F306B88005493FE /* YZLiveItem.m */; };
 		3071BA221F306B88005493FE /* YZLiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3071BA1E1F306B88005493FE /* YZLiveCell.m */; };
@@ -173,6 +174,8 @@
 		304AF6C11F330E4400337BAF /* Number.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Number.bundle; sourceTree = "<group>"; };
 		304AF6C31F3322F100337BAF /* Gift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gift.h; sourceTree = "<group>"; };
 		304AF6C41F3322F100337BAF /* Gift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gift.m; sourceTree = "<group>"; };
+		304AF6C61F34454A00337BAF /* RightAnchorListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightAnchorListView.h; sourceTree = "<group>"; };
+		304AF6C71F34454A00337BAF /* RightAnchorListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightAnchorListView.m; sourceTree = "<group>"; };
 		3071BA181F306B88005493FE /* YZCreatorItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZCreatorItem.h; sourceTree = "<group>"; };
 		3071BA191F306B88005493FE /* YZCreatorItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZCreatorItem.m; sourceTree = "<group>"; };
 		3071BA1A1F306B88005493FE /* YZLiveItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZLiveItem.h; sourceTree = "<group>"; };
@@ -352,6 +355,8 @@
 				3039E6061F3177ED00744DC5 /* RoomImageView.m */,
 				3039E6081F31BC6F00744DC5 /* AdmireAnimationView.h */,
 				3039E6091F31BC6F00744DC5 /* AdmireAnimationView.m */,
+				304AF6C61F34454A00337BAF /* RightAnchorListView.h */,
+				304AF6C71F34454A00337BAF /* RightAnchorListView.m */,
 				3039E64E1F31DA9300744DC5 /* GiftView */,
 			);
 			path = View;
@@ -922,6 +927,7 @@
 				30A959C01F2ECAB500DD9F4D /* AppDelegate.m in Sources */,
 				30A95A9B1F2ED32F00DD9F4D /* SDWebImagePrefetcher.m in Sources */,
 				30A95AA01F2ED32F00DD9F4D /* UIImageView+WebCache.m in Sources */,
+				304AF6C81F34454A00337BAF /* RightAnchorListView.m in Sources */,
 				3071BA3F1F306BA8005493FE /* NSObject+MJClass.m in Sources */,
 				3039E60A1F31BC6F00744DC5 /* AdmireAnimationView.m in Sources */,
 				30A95A311F2ED21300DD9F4D /* AFNetworkReachabilityManager.m in Sources */,

@@ -9,17 +9,24 @@
 #import "LiveSubViewController.h"
 #import "AdmireAnimationView.h"
 #import "GiftContaierView.h"
+#import "RightAnchorListView.h"
 
 #import <IJKMediaFramework/IJKMediaFramework.h>
 
 
 @interface LiveSubViewController ()<UIScrollViewDelegate,UIGestureRecognizerDelegate>
-
 @property (nonatomic, strong) IJKFFMoviePlayerController *player;
+
 @property (nonatomic, assign) BOOL                  clearViewShow;        //标记是否清爽模式
+@property (nonatomic, assign) BOOL               rightListShow;           //主播列表是否显示
+@property (nonatomic, assign) CGFloat               MoveStarX;            //麦序开始移动的X
+
+@property (nonatomic, assign) movingType            movingType;
+
 
 @property (nonatomic, strong) UIView *clearBgView;  //滑动的View
-@property (nonatomic, strong) AdmireAnimationView *admireAnimationView;
+@property (nonatomic, strong) AdmireAnimationView *admireAnimationView; //点赞动画
+@property (nonatomic, strong) RightAnchorListView *rightAnchorListView; //右边公麦私麦列表
 
 
 @end
@@ -52,13 +59,16 @@
     [self.clearBgView addSubview:containerView];
     containerView.backgroundColor = [UIColor redColor];
     
+    ;
+    [self.clearBgView addSubview:self.rightAnchorListView];
+
+    
     UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(10, 100, 100, 100)];
     [self.clearBgView addSubview:btn];
     btn.backgroundColor = [UIColor redColor];
     [btn addTarget:self action:@selector(clickBtn) forControlEvents:UIControlEventTouchDown];
     
-    
- 
+
     
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(clearViewMoveToLeft:)];
     pan.delegate = self;
@@ -113,6 +123,7 @@
                 } completion:^(BOOL finished) {
                     _clearViewShow = _clearBgView.center.x < SCREEN_WIDTH;
                 }];
+                
             }
                 break;
             default:
@@ -123,6 +134,23 @@
     
 }
 
+
+
+- (void)touchDidMove:(UIPanGestureRecognizer*)pan{
+    CGPoint point = [pan translationInView:self.view];
+    if (point.x < 0 && !_rightListShow) {
+        
+        [_rightAnchorListView show];
+        _rightListShow = YES;
+        
+    }else if (point.x > 0 && _rightListShow){
+        [_rightAnchorListView close];
+        _rightListShow = NO;
+    }else {
+        [self clearViewMoveAnimate:pan];
+    }
+
+}
 
 #pragma mark   ----  清爽模式移动
 - (void)clearViewMoveAnimate:(UIPanGestureRecognizer*)pan{
@@ -143,12 +171,19 @@
             } completion:^(BOOL finished) {
                 _clearViewShow = _clearBgView.center.x < SCREEN_WIDTH;
             }];
+            _movingType = movingTypeNone;
         }
             
         default:
             break;
     }
 }
+
+// 麦序移动
+- (void)rightListMoveAnimate:(UIPanGestureRecognizer*)pan{
+    
+}
+
 
 
 - (void)endLive{
@@ -157,6 +192,14 @@
     [_player stop];
     [_player shutdown];
     _player = nil;
+}
+
+
+- (void)refreshPlayAddress:(NSString*)address{
+    [self endLive];
+    _liveURL = address;
+    [self.view addSubview:self.player.view];
+    [self.view sendSubviewToBack:self.player.view];
 }
 
 - (IJKFFMoviePlayerController *)player{
@@ -183,33 +226,37 @@
 }
 
 
+
+
+
 - (UIView*)clearBgView{
     if (!_clearBgView) {
         _clearBgView = [[UIView alloc]initWithFrame:self.view.bounds];
         _clearBgView.backgroundColor = [UIColor clearColor];
-        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(clearViewMoveAnimate:)];
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(touchDidMove:)];
         pan.delegate = self;
         [_clearBgView addGestureRecognizer:pan];
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAndima)];
-        [_clearBgView addGestureRecognizer:tap];
+//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAndima)];
+//        [_clearBgView addGestureRecognizer:tap];
     }
     return _clearBgView;
 }
 
+- (RightAnchorListView*)rightAnchorListView{
+    if (!_rightAnchorListView) {
+        _rightAnchorListView = [[RightAnchorListView alloc]init];
+        WS(ws);
+        [_rightAnchorListView setSelectBlock:^(NSString *liveAddStr){
+            [ws refreshPlayAddress:liveAddStr];
+        }];
+        
+    }
+    return _rightAnchorListView;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

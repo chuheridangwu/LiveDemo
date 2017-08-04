@@ -8,6 +8,7 @@
 
 #import "LiveListViewController.h"
 #import "LiveMainViewController.h"
+#import "Room.h"
 #import "YZLiveItem.h"
 #import "YZLiveCell.h"
 
@@ -51,7 +52,7 @@ static NSString * const ID = @"cell";
     [mgr GET:urlStr parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary * _Nullable responseObject) {
         
         _lives = [YZLiveItem mj_objectArrayWithKeyValuesArray:responseObject[@"lives"]];
-        
+        [Room currentRoom].liveArray = _lives;
         [self.tableView reloadData];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
