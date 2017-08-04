@@ -10,6 +10,7 @@
 #import <IJKMediaFramework/IJKMediaFramework.h>
 #import "UserLiveViewController.h"
 #import "LiveListViewController.h"
+#import "LiveSubViewController.h"
 
 
 @interface ViewController ()
@@ -43,6 +44,8 @@
 - (void)changeCapture1{
     LiveListViewController *vc = [[LiveListViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
+//    LiveSubViewController *vc = [[LiveSubViewController alloc]init];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

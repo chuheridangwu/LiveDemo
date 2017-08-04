@@ -29,6 +29,10 @@
 		3039E64B1F31BEB900744DC5 /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3039E6351F31BEB900744DC5 /* UIScrollView+MJExtension.m */; };
 		3039E64C1F31BEB900744DC5 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 3039E6371F31BEB900744DC5 /* UIScrollView+MJRefresh.m */; };
 		3039E64D1F31BEB900744DC5 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3039E6391F31BEB900744DC5 /* UIView+MJExtension.m */; };
+		3039E6511F31DB9000744DC5 /* GiftContaierView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3039E6501F31DB9000744DC5 /* GiftContaierView.m */; };
+		3039E6541F31DBAD00744DC5 /* MobileGiftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3039E6531F31DBAD00744DC5 /* MobileGiftView.m */; };
+		304AF6C21F330E4400337BAF /* Number.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 304AF6C11F330E4400337BAF /* Number.bundle */; };
+		304AF6C51F3322F100337BAF /* Gift.m in Sources */ = {isa = PBXBuildFile; fileRef = 304AF6C41F3322F100337BAF /* Gift.m */; };
 		3071BA201F306B88005493FE /* YZCreatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3071BA191F306B88005493FE /* YZCreatorItem.m */; };
 		3071BA211F306B88005493FE /* YZLiveItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3071BA1B1F306B88005493FE /* YZLiveItem.m */; };
 		3071BA221F306B88005493FE /* YZLiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3071BA1E1F306B88005493FE /* YZLiveCell.m */; };
@@ -97,6 +101,7 @@
 		30B8212B1F30227F0030EE63 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 30B8212A1F30227F0030EE63 /* libz.tbd */; };
 		30B8212D1F3022880030EE63 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 30B8212C1F3022880030EE63 /* libbz2.tbd */; };
 		30B821311F3022AB0030EE63 /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30B821301F3022AB0030EE63 /* IJKMediaFramework.framework */; };
+		30E97F161F32BB8C00005A61 /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E97F151F32BB8B00005A61 /* Room.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +166,13 @@
 		3039E6371F31BEB900744DC5 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		3039E6381F31BEB900744DC5 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		3039E6391F31BEB900744DC5 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		3039E64F1F31DB9000744DC5 /* GiftContaierView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiftContaierView.h; sourceTree = "<group>"; };
+		3039E6501F31DB9000744DC5 /* GiftContaierView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiftContaierView.m; sourceTree = "<group>"; };
+		3039E6521F31DBAD00744DC5 /* MobileGiftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileGiftView.h; sourceTree = "<group>"; };
+		3039E6531F31DBAD00744DC5 /* MobileGiftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileGiftView.m; sourceTree = "<group>"; };
+		304AF6C11F330E4400337BAF /* Number.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Number.bundle; sourceTree = "<group>"; };
+		304AF6C31F3322F100337BAF /* Gift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gift.h; sourceTree = "<group>"; };
+		304AF6C41F3322F100337BAF /* Gift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gift.m; sourceTree = "<group>"; };
 		3071BA181F306B88005493FE /* YZCreatorItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZCreatorItem.h; sourceTree = "<group>"; };
 		3071BA191F306B88005493FE /* YZCreatorItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZCreatorItem.m; sourceTree = "<group>"; };
 		3071BA1A1F306B88005493FE /* YZLiveItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZLiveItem.h; sourceTree = "<group>"; };
@@ -293,6 +305,8 @@
 		30B8212A1F30227F0030EE63 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		30B8212C1F3022880030EE63 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
 		30B821301F3022AB0030EE63 /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
+		30E97F141F32BB8B00005A61 /* Room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Room.h; sourceTree = "<group>"; };
+		30E97F151F32BB8B00005A61 /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Room.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -338,6 +352,7 @@
 				3039E6061F3177ED00744DC5 /* RoomImageView.m */,
 				3039E6081F31BC6F00744DC5 /* AdmireAnimationView.h */,
 				3039E6091F31BC6F00744DC5 /* AdmireAnimationView.m */,
+				3039E64E1F31DA9300744DC5 /* GiftView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -437,6 +452,17 @@
 			path = Header;
 			sourceTree = "<group>";
 		};
+		3039E64E1F31DA9300744DC5 /* GiftView */ = {
+			isa = PBXGroup;
+			children = (
+				3039E64F1F31DB9000744DC5 /* GiftContaierView.h */,
+				3039E6501F31DB9000744DC5 /* GiftContaierView.m */,
+				3039E6521F31DBAD00744DC5 /* MobileGiftView.h */,
+				3039E6531F31DBAD00744DC5 /* MobileGiftView.m */,
+			);
+			path = GiftView;
+			sourceTree = "<group>";
+		};
 		3071BA161F306B71005493FE /* LiveListVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -504,6 +530,7 @@
 				3071BA471F307366005493FE /* LiveMainViewController.m */,
 				3071BA4B1F3083ED005493FE /* LiveSubViewController.h */,
 				3071BA4C1F3083ED005493FE /* LiveSubViewController.m */,
+				30E97F131F32BB2E00005A61 /* Model */,
 				3039E6041F3177D100744DC5 /* View */,
 			);
 			path = LIveMain;
@@ -713,6 +740,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		30E97F131F32BB2E00005A61 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				30E97F141F32BB8B00005A61 /* Room.h */,
+				30E97F151F32BB8B00005A61 /* Room.m */,
+				304AF6C31F3322F100337BAF /* Gift.h */,
+				304AF6C41F3322F100337BAF /* Gift.m */,
+				304AF6C11F330E4400337BAF /* Number.bundle */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -823,6 +862,7 @@
 				30A95A0A1F2ECB0F00DD9F4D /* Info.plist in Resources */,
 				3071BA231F306B88005493FE /* YZLiveCell.xib in Resources */,
 				3039E6481F31BEB900744DC5 /* MJRefresh.bundle in Resources */,
+				304AF6C21F330E4400337BAF /* Number.bundle in Resources */,
 				30A959CB1F2ECAB500DD9F4D /* LaunchScreen.storyboard in Resources */,
 				30A959C81F2ECAB500DD9F4D /* Assets.xcassets in Resources */,
 				30A959C61F2ECAB500DD9F4D /* Main.storyboard in Resources */,
@@ -860,6 +900,7 @@
 				309DD8D71F302BDD000CB180 /* UserLiveViewController.m in Sources */,
 				30A95A111F2ECB0F00DD9F4D /* NSArray+MASAdditions.m in Sources */,
 				3039E64D1F31BEB900744DC5 /* UIView+MJExtension.m in Sources */,
+				3039E6541F31DBAD00744DC5 /* MobileGiftView.m in Sources */,
 				3039E6431F31BEB900744DC5 /* MJRefreshBackNormalFooter.m in Sources */,
 				3071BA431F306BA8005493FE /* NSString+MJExtension.m in Sources */,
 				3039E6071F3177ED00744DC5 /* RoomImageView.m in Sources */,
@@ -869,10 +910,12 @@
 				30A95A971F2ED32F00DD9F4D /* SDWebImageDecoder.m in Sources */,
 				3039E6461F31BEB900744DC5 /* MJRefreshNormalHeader.m in Sources */,
 				30A95A301F2ED21300DD9F4D /* AFHTTPSessionManager.m in Sources */,
+				30E97F161F32BB8C00005A61 /* Room.m in Sources */,
 				3039E64C1F31BEB900744DC5 /* UIScrollView+MJRefresh.m in Sources */,
 				309DD8DC1F30688A000CB180 /* LiveListViewController.m in Sources */,
 				3039E63C1F31BEB900744DC5 /* MJRefreshComponent.m in Sources */,
 				3039E6421F31BEB900744DC5 /* MJRefreshBackGifFooter.m in Sources */,
+				3039E6511F31DB9000744DC5 /* GiftContaierView.m in Sources */,
 				3071BA401F306BA8005493FE /* NSObject+MJCoding.m in Sources */,
 				3039E63F1F31BEB900744DC5 /* MJRefreshAutoGifFooter.m in Sources */,
 				3039E64A1F31BEB900744DC5 /* NSBundle+MJRefresh.m in Sources */,
@@ -892,6 +935,7 @@
 				3039E6411F31BEB900744DC5 /* MJRefreshAutoStateFooter.m in Sources */,
 				30A95A9D1F2ED32F00DD9F4D /* UIImage+GIF.m in Sources */,
 				3071BA411F306BA8005493FE /* NSObject+MJKeyValue.m in Sources */,
+				304AF6C51F3322F100337BAF /* Gift.m in Sources */,
 				30A95A941F2ED32F00DD9F4D /* NSData+ImageContentType.m in Sources */,
 				3039E63E1F31BEB900744DC5 /* MJRefreshHeader.m in Sources */,
 				3071BA221F306B88005493FE /* YZLiveCell.m in Sources */,

@@ -8,10 +8,12 @@
 
 #import "LiveSubViewController.h"
 #import "AdmireAnimationView.h"
+#import "GiftContaierView.h"
+
 #import <IJKMediaFramework/IJKMediaFramework.h>
 
 
-@interface LiveSubViewController ()<UIScrollViewDelegate>
+@interface LiveSubViewController ()<UIScrollViewDelegate,UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) IJKFFMoviePlayerController *player;
 
@@ -43,9 +45,24 @@
     
     _admireAnimationView = [[AdmireAnimationView alloc]initWithSuperView:self.view];
 
+    GiftContaierView *containerView = [GiftContaierView sharedInstance];
+    [containerView setFrame:CGRectMake(10, SCREEN_HEIGHT - 150 + 31 - CGRectGetHeight(containerView.frame), 45, CGRectGetHeight(containerView.frame))];
+    [self.clearBgView addSubview:containerView];
+    containerView.backgroundColor = [UIColor redColor];
+    
+    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(10, 100, 100, 100)];
+    [self.clearBgView addSubview:btn];
+    btn.backgroundColor = [UIColor redColor];
+    [btn addTarget:self action:@selector(clickBtn) forControlEvents:UIControlEventTouchDown];
+    
+    
+    
+    
 }
 
-
+- (void)clickBtn{
+    [[GiftContaierView sharedInstance]  showNextGift];
+}
 
 #pragma mark   --   点赞动画
 - (void)tapAndima{
@@ -53,26 +70,34 @@
 }
 
 
+// 这个为了将上下滑动的手势传递到parent view
+- (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer {
+    
+    if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
+        CGPoint translation = [gestureRecognizer translationInView:self.view.superview];
+        
+        return fabs(translation.y) <= fabs(translation.x);
+    }
+    
+    return YES;
+}
+
+#pragma mark -- 清爽模式下左滑
+- (void)panClearBgViewView:(UIPanGestureRecognizer*)pan{
+    CGPoint point = [pan translationInView:self.clearBgView];
+    NSLog(@"%ld", pan.state);
+    if (point.y / point.x > 1 || point.y / point.x < -1) {
+        
+    }
+    
+    
+}
 
 
+#pragma mark   ----  清爽模式
+- (void)panClearBgViewView{
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
 - (void)endLive{
@@ -87,7 +112,9 @@
     if (!_player) {
         // 拉流地址
         NSURL *url = [NSURL URLWithString:_liveURL];
-        
+
+        //本地的拉流
+//        NSURL *url = [NSURL URLWithString:@"rtmp://ks-uplive.app-remix.com/live/126079831822569889?accesskey=7W2tOoj2ImD7U6tzlDCw&expire=1501777583&public=1&vdoid=121171858611973966&signature=irJryfvFhmbh5bAvPIM9k27%2BrPg%3D"];
         // 创建IJKFFMoviePlayerController：专门用来直播，传入拉流地址就好了
         IJKFFMoviePlayerController *playerVc = [[IJKFFMoviePlayerController alloc] initWithContentURL:url withOptions:nil];
         
@@ -112,6 +139,10 @@
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAndima)];
         [_clearBgView addGestureRecognizer:tap];
+        
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panClearBgViewView:)];
+        pan.delegate = self;
+        [_clearBgView addGestureRecognizer:pan];
     }
     return _clearBgView;
 }
