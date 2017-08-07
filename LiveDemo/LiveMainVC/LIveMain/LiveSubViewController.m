@@ -24,7 +24,6 @@
 @property (nonatomic, assign) movingType            movingType;
 
 
-@property (nonatomic, strong) UIView *clearBgView;  //滑动的View
 @property (nonatomic, strong) AdmireAnimationView *admireAnimationView; //点赞动画
 @property (nonatomic, strong) RightAnchorListView *rightAnchorListView; //右边公麦私麦列表
 
@@ -42,6 +41,7 @@
     [_player stop];
     [_player shutdown];
     _player = nil;
+    [_player.view removeFromSuperview];
 }
 
 - (void)viewDidLoad {
@@ -59,9 +59,7 @@
     [self.clearBgView addSubview:containerView];
     containerView.backgroundColor = [UIColor redColor];
     
-    ;
     [self.clearBgView addSubview:self.rightAnchorListView];
-
     
     UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(10, 100, 100, 100)];
     [self.clearBgView addSubview:btn];
@@ -135,24 +133,42 @@
 }
 
 
-
+#pragma mark  ---  滑动麦序或者礼物界面
 - (void)touchDidMove:(UIPanGestureRecognizer*)pan{
     CGPoint point = [pan translationInView:self.view];
-    if (point.x < 0 && !_rightListShow) {
-        
-        [_rightAnchorListView show];
-        _rightListShow = YES;
-        
-    }else if (point.x > 0 && _rightListShow){
-        [_rightAnchorListView close];
-        _rightListShow = NO;
-    }else {
-        [self clearViewMoveAnimate:pan];
+    switch (_movingType) {
+        case movingTypeNone:
+        {
+            if (point.x / point.y > 1 || point.x / point.y < -1) {
+                if (self.rightListShow || (!self.rightListShow && point.x < 0)) {
+                    
+                    _movingType = movingTypeMicroList;
+                    [self rightListMoveAnimate:pan];
+                }else{
+                    
+                    _movingType = movingTypeClearView;
+                    [self clearViewMoveAnimate:pan];
+                }
+            }
+        }
+            break;
+        case movingTypeMicroList:
+        {
+            [self rightListMoveAnimate:pan];
+        }
+            break;
+        case movingTypeClearView:
+        {
+            [self clearViewMoveAnimate:pan];
+        }
+            break;
+        default:
+            break;
     }
 
 }
 
-#pragma mark   ----  清爽模式移动
+//  清爽模式移动
 - (void)clearViewMoveAnimate:(UIPanGestureRecognizer*)pan{
     CGPoint point = [pan translationInView:self.view];
     NSLog(@"%ld",pan.state);
@@ -181,7 +197,32 @@
 
 // 麦序移动
 - (void)rightListMoveAnimate:(UIPanGestureRecognizer*)pan{
-    
+    CGFloat itemWidth = CGRectGetWidth(self.rightAnchorListView.frame);
+    CGPoint point1 = [pan translationInView:self.view];
+    switch (pan.state) {
+        case UIGestureRecognizerStateBegan:
+            _MoveStarX = self.rightAnchorListView.center.x;
+            break;
+        case UIGestureRecognizerStateChanged:
+        {
+            if ((self.rightAnchorListView.center.x > SCREEN_WIDTH - itemWidth / 2 && point1.x < 0) || (self.rightAnchorListView.center.x < SCREEN_WIDTH + itemWidth / 2 && point1.x > 0)) {
+                self.rightAnchorListView.center = CGPointMake(_MoveStarX + point1.x / 2, self.rightAnchorListView.center.y);
+            }
+            
+        }
+            break;
+        case UIGestureRecognizerStateEnded:
+        {
+            _rightListShow = self.rightAnchorListView.center.x < SCREEN_WIDTH;
+            [UIView animateWithDuration:0.2 animations:^{
+                self.rightAnchorListView.center = CGPointMake(_rightListShow ? SCREEN_WIDTH - itemWidth / 2 : SCREEN_WIDTH + itemWidth / 2, self.rightAnchorListView.center.y);
+            }];
+            _movingType = movingTypeNone;
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 
@@ -192,15 +233,19 @@
     [_player stop];
     [_player shutdown];
     _player = nil;
+    [_player.view removeFromSuperview];
+
 }
 
 
 - (void)refreshPlayAddress:(NSString*)address{
     [self endLive];
     _liveURL = address;
-    [self.view addSubview:self.player.view];
-    [self.view sendSubviewToBack:self.player.view];
+    [self.view insertSubview:self.player.view belowSubview:self.clearBgView];
 }
+
+
+#pragma mark    -------------    lazy
 
 - (IJKFFMoviePlayerController *)player{
     if (!_player) {
@@ -226,9 +271,6 @@
 }
 
 
-
-
-
 - (UIView*)clearBgView{
     if (!_clearBgView) {
         _clearBgView = [[UIView alloc]initWithFrame:self.view.bounds];
@@ -236,8 +278,11 @@
         UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(touchDidMove:)];
         pan.delegate = self;
         [_clearBgView addGestureRecognizer:pan];
-//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAndima)];
-//        [_clearBgView addGestureRecognizer:tap];
+        
+        UIButton *btn = [[UIButton alloc]initWithFrame:self.view.bounds];
+        [_clearBgView addSubview:btn];
+        btn.backgroundColor = [UIColor clearColor];
+        [btn addTarget:self action:@selector(tapAndima) forControlEvents:UIControlEventTouchDown];
     }
     return _clearBgView;
 }
@@ -246,8 +291,10 @@
     if (!_rightAnchorListView) {
         _rightAnchorListView = [[RightAnchorListView alloc]init];
         WS(ws);
-        [_rightAnchorListView setSelectBlock:^(NSString *liveAddStr){
-            [ws refreshPlayAddress:liveAddStr];
+        [_rightAnchorListView setSelectBlock:^(NSString *liveAddStr,CGRect rect){
+            if ([ws.delegate respondsToSelector:@selector(switchAnchor:touchRect:)]) {
+                [ws.delegate switchAnchor:liveAddStr touchRect:rect];
+            }
         }];
         
     }

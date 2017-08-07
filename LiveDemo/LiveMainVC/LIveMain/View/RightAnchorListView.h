@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface RightAnchorListView : UIView
-@property (nonatomic,strong)void (^selectBlock)( NSString *liveAddStr);
+@property (nonatomic,strong)void (^selectBlock)( NSString *liveAddStr ,CGRect rect);
 
 
 - (void)show;

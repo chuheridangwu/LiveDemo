@@ -13,15 +13,20 @@
 #import "RoomImageView.h"
 
 
-@interface LiveMainViewController ()<UIScrollViewDelegate>
+@interface LiveMainViewController ()<UIScrollViewDelegate,LiveSubViewControllerDelegate,CAAnimationDelegate>
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) LiveSubViewController *liveSubVC;
 @property (nonatomic, assign) BOOL delayStart;       // 在滚动结束后，设置延时加载RoomViewController
 
 @property (nonatomic, copy) NSString *liveUrl;
 
-@property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, strong) NSArray *dataArray;   // 数据源
 @property (nonatomic, assign) NSInteger curIndex;
+
+@property (nonatomic, strong) UIImageView *switchImageView; //切换的图片
+@property (nonatomic, assign) CGRect touchRect;     //切换麦的位置
+
+
 @end
 
 @implementation LiveMainViewController
@@ -55,7 +60,7 @@
     [_liveSubVC endLive];
     _liveSubVC.liveURL = _liveUrl;
     [self addChildViewController:_liveSubVC];
-    //    _liveSubVC.delegate = self;
+    _liveSubVC.delegate = self;
     [_liveSubVC.view setFrame:CGRectMake(0, CGRectGetHeight(_scrollView.frame), CGRectGetWidth(_scrollView.frame), CGRectGetHeight(_scrollView.frame))];
     [_scrollView addSubview:_liveSubVC.view];
 }
@@ -141,6 +146,47 @@
 
 }
 
+#pragma mark  ---- LiveSubViewControllerDelegate  ------
+- (void)switchAnchor:(NSString *)liveURL touchRect:(CGRect)rect{
+    [_liveSubVC refreshPlayAddress:liveURL];
+    _touchRect = rect;
+    
+    [_liveSubVC.view insertSubview:self.switchImageView belowSubview:_liveSubVC.clearBgView];
+    [self addZoomLayer:self.switchImageView];
+}
+
+- (void)addZoomLayer:(UIView*)view{
+    CGPoint finaPoint;
+    finaPoint = CGPointMake(_touchRect.origin.x + _touchRect.size.width / 2.0, _touchRect.origin.y + _touchRect.size.height / 2.0 - SCREEN_HEIGHT);
+    if (_touchRect.origin.y + _touchRect.size.height / 2.0 > SCREEN_HEIGHT / 2.0) {
+        finaPoint = CGPointMake(_touchRect.origin.x + _touchRect.size.width / 2.0, _touchRect.origin.y + _touchRect.size.height / 2.0);
+    }
+    CGFloat radius = sqrt((finaPoint.x * finaPoint.x) + (finaPoint.y * finaPoint.y));
+    UIBezierPath *maskFinalBP = [UIBezierPath bezierPathWithOvalInRect:CGRectInset(_touchRect, -radius, -radius)];
+    UIBezierPath *maskStartBP = [UIBezierPath bezierPathWithOvalInRect:_touchRect];
+    
+    //创建一个CAShapeLayer 来负责展示圆形遮盖
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    maskLayer.path = maskFinalBP.CGPath; // 将它的path指定为最终的path来避免在动画完成后回弹
+    view.layer.mask = maskLayer;
+    
+    CABasicAnimation *maskLayerAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
+    maskLayerAnimation.fromValue = (__bridge id _Nullable)(maskStartBP.CGPath);
+    maskLayerAnimation.toValue = (__bridge id _Nullable)(maskFinalBP.CGPath);
+    maskLayerAnimation.duration = 0.4f;
+    maskLayerAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    maskLayerAnimation.delegate = self;
+    
+    [maskLayer addAnimation:maskLayerAnimation forKey:@"path"];
+}
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
+    _switchImageView.layer.mask = nil;
+    [_switchImageView removeFromSuperview];
+    _touchRect = CGRectZero;
+    
+}
+
+
 #pragma mark  --- lazy -----
 
 - (void)backVC{
@@ -158,6 +204,7 @@
     return btn;
 }
 
+
 - (UIScrollView*)scrollView{
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc]initWithFrame:self.view.bounds];
@@ -169,6 +216,18 @@
         [_scrollView setContentOffset:CGPointMake(0, _scrollView.frame.size.height) animated:NO];
     }
     return _scrollView;
+}
+
+- (UIImageView*)switchImageView{
+    if (!_switchImageView) {
+        _switchImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
+        _switchImageView.contentMode = UIViewContentModeScaleAspectFill;
+        YZLiveItem *item = [_dataArray objectAtIndex:_curIndex];        
+        [_switchImageView sd_setImageWithURL:[NSURL URLWithString:item.creator.portrait] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            _switchImageView.image = [ImageProessing blur:image level:20];
+        }];
+    }
+    return _switchImageView;
 }
 
 

@@ -21,6 +21,14 @@
 
 #import "Room.h"
 
+
+//Category
+#import "ImageProessing.h"
+
+
+
+
+
 // 屏幕高度
 #define SCREEN_HEIGHT         [[UIScreen mainScreen] bounds].size.height
 // 屏幕宽度

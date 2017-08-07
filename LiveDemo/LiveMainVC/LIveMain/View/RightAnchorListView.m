@@ -69,7 +69,7 @@ static NSString *identifi = @"anchorList";
     _collectionView.backgroundColor = [UIColor clearColor];
     _collectionView.showsVerticalScrollIndicator = NO;
     [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:identifi];
-    [self addSubview:_collectionView];
+    [bgView addSubview:_collectionView];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -118,7 +118,11 @@ static NSString *identifi = @"anchorList";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     YZLiveItem *item = _dataArray[indexPath.item];
     if (_selectBlock) {
-        _selectBlock(item.stream_addr);
+        CGFloat pointX = CGRectGetMinX(self.frame);
+        CGFloat pointY = pointY = 95 * indexPath.item + 5 - _collectionView.contentOffset.y;
+        CGRect  headerRect = CGRectMake(pointX, pointY, 70, 70);
+        
+        _selectBlock(item.stream_addr,headerRect);
     }
 }
 
