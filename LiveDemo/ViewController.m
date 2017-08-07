@@ -30,12 +30,17 @@
     [self.view addSubview:btn];
     
     
-    UIButton *btn1 = [[UIButton alloc]initWithFrame:CGRectMake(100, 300, 100, 50)];
+    UIButton *btn1 = [[UIButton alloc]initWithFrame:CGRectMake(100, 250, 100, 50)];
     [btn1 setTitle:@"直播列表" forState:UIControlStateNormal];
     [btn1 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     [btn1 addTarget:self action:@selector(changeCapture1) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:btn1];
     
+    UIButton *btn2 = [[UIButton alloc]initWithFrame:CGRectMake(100, 350, 150, 50)];
+    [btn2 setTitle:@"观看自己直播" forState:UIControlStateNormal];
+    [btn2 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [btn2 addTarget:self action:@selector(lookSelfLive) forControlEvents:UIControlEventTouchDown];
+    [self.view addSubview:btn2];
     
 //    UIView * view = [UIView alloc]initWithFrame:@{CGPointMake(100, 100):CGSizeMake(50, 50)};
     
@@ -44,8 +49,6 @@
 - (void)changeCapture1{
     LiveListViewController *vc = [[LiveListViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
-//    LiveSubViewController *vc = [[LiveSubViewController alloc]init];
-//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
@@ -54,7 +57,11 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-
+- (void)lookSelfLive{
+        LiveSubViewController *vc = [[LiveSubViewController alloc]init];
+        vc.liveURL = @"rtmp://ks-uplive.app-remix.com/live/126079831822569889?accesskey=7W2tOoj2ImD7U6tzlDCw&expire=1501777583&public=1&vdoid=121171858611973966&signature=irJryfvFhmbh5bAvPIM9k27%2BrPg%3D";
+        [self.navigationController pushViewController:vc animated:YES];
+}
 
 
 

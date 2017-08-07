@@ -17,6 +17,7 @@
 #import "AFNetworking.h"
 #import "MJExtension.h"
 #import "MJRefresh.h"
+#import <LFLiveKit.h>   // 推流框架
 
 
 #import "Room.h"

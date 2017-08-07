@@ -252,8 +252,6 @@
         // 拉流地址
         NSURL *url = [NSURL URLWithString:_liveURL];
 
-        //本地的拉流
-//        NSURL *url = [NSURL URLWithString:@"rtmp://ks-uplive.app-remix.com/live/126079831822569889?accesskey=7W2tOoj2ImD7U6tzlDCw&expire=1501777583&public=1&vdoid=121171858611973966&signature=irJryfvFhmbh5bAvPIM9k27%2BrPg%3D"];
         // 创建IJKFFMoviePlayerController：专门用来直播，传入拉流地址就好了
         IJKFFMoviePlayerController *playerVc = [[IJKFFMoviePlayerController alloc] initWithContentURL:url withOptions:nil];
         
