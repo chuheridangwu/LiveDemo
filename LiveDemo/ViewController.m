@@ -11,6 +11,7 @@
 #import "UserLiveViewController.h"
 #import "LiveListViewController.h"
 #import "LiveSubViewController.h"
+#import "ShowLiveViewController.h"
 
 
 @interface ViewController ()
@@ -53,8 +54,11 @@
 
 
 - (void)changeCapture{
-    UserLiveViewController *vc = [[UserLiveViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+//    UserLiveViewController *vc = [[UserLiveViewController alloc]init];
+//    [self.navigationController pushViewController:vc animated:YES];
+    
+    ShowLiveViewController *showTimeVc = [UIStoryboard storyboardWithName:NSStringFromClass([ShowLiveViewController class]) bundle:nil].instantiateInitialViewController;
+    [self presentViewController:showTimeVc animated:YES completion:nil];
 }
 
 - (void)lookSelfLive{

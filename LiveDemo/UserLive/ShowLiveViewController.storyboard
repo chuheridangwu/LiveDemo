@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2wy-wb-747">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Show Live View Controller-->
+        <scene sceneID="AV1-kT-uas">
+            <objects>
+                <viewController id="2wy-wb-747" customClass="ShowLiveViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="92u-Du-Rgw"/>
+                        <viewControllerLayoutGuide type="bottom" id="XSM-hL-JPn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hca-3C-ND5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HpD-CT-Kxw" userLabel="beautifulBtn">
+                                <rect key="frame" x="26" y="38" width="203" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="9Vc-pK-BYn"/>
+                                </constraints>
+                                <state key="normal" title="智能美颜开启" image="icon_beautifulface"/>
+                                <state key="selected" title="智能美颜关闭"/>
+                                <connections>
+                                    <action selector="beautiful:" destination="2wy-wb-747" eventType="touchUpInside" id="q9E-5N-uVo"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohm-K1-i1C">
+                                <rect key="frame" x="254" y="35" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="3Ho-6e-hcQ"/>
+                                    <constraint firstAttribute="height" constant="40" id="WT0-qG-s4d"/>
+                                </constraints>
+                                <state key="normal" image="camera_change"/>
+                                <connections>
+                                    <action selector="switchCamare:" destination="2wy-wb-747" eventType="touchUpInside" id="ppZ-nU-w7D"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cnk-JP-F3u" userLabel="closeBtn">
+                                <rect key="frame" x="309" y="35" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="Df2-oV-HRz"/>
+                                    <constraint firstAttribute="height" constant="40" id="mlP-9j-Eku"/>
+                                </constraints>
+                                <state key="normal" image="talk_close"/>
+                                <connections>
+                                    <action selector="close:" destination="2wy-wb-747" eventType="touchUpInside" id="LBe-iB-cpe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="utY-Hi-hSq">
+                                <rect key="frame" x="41" y="582" width="293" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="h1F-G6-dcO"/>
+                                </constraints>
+                                <state key="normal" title="开启直播">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <state key="selected" title="结束直播">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="startLive:" destination="2wy-wb-747" eventType="touchUpInside" id="Oxd-zX-al4"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未知" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kc6-6d-NhW">
+                                <rect key="frame" x="26" y="95" width="323" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="yGe-DF-NTu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HpD-CT-Kxw" firstAttribute="top" secondItem="92u-Du-Rgw" secondAttribute="bottom" constant="18" id="2Zw-ih-czf"/>
+                            <constraint firstItem="XSM-hL-JPn" firstAttribute="top" secondItem="utY-Hi-hSq" secondAttribute="bottom" constant="50" id="3cN-mi-ore"/>
+                            <constraint firstItem="cnk-JP-F3u" firstAttribute="top" secondItem="92u-Du-Rgw" secondAttribute="bottom" constant="15" id="4x6-68-pcw"/>
+                            <constraint firstItem="kc6-6d-NhW" firstAttribute="top" secondItem="hca-3C-ND5" secondAttribute="topMargin" constant="95" id="6vM-1f-4q9"/>
+                            <constraint firstItem="cnk-JP-F3u" firstAttribute="leading" secondItem="ohm-K1-i1C" secondAttribute="trailing" constant="15" id="GEo-8x-eiZ"/>
+                            <constraint firstItem="HpD-CT-Kxw" firstAttribute="leading" secondItem="hca-3C-ND5" secondAttribute="leadingMargin" constant="10" id="I5Y-ss-x7G"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kc6-6d-NhW" secondAttribute="trailing" constant="10" id="IIJ-AY-wx9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cnk-JP-F3u" secondAttribute="trailing" constant="10" id="LrK-gn-WJm"/>
+                            <constraint firstItem="kc6-6d-NhW" firstAttribute="leading" secondItem="hca-3C-ND5" secondAttribute="leadingMargin" constant="10" id="Ra4-Tx-ibw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="utY-Hi-hSq" secondAttribute="trailing" constant="25" id="TzK-WQ-egN"/>
+                            <constraint firstItem="ohm-K1-i1C" firstAttribute="top" secondItem="92u-Du-Rgw" secondAttribute="bottom" constant="15" id="UoV-ug-0mf"/>
+                            <constraint firstItem="ohm-K1-i1C" firstAttribute="leading" secondItem="HpD-CT-Kxw" secondAttribute="trailing" constant="25" id="giW-a6-POy"/>
+                            <constraint firstItem="utY-Hi-hSq" firstAttribute="leading" secondItem="hca-3C-ND5" secondAttribute="leadingMargin" constant="25" id="tOL-Hs-RYw"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="beautifulBtn" destination="HpD-CT-Kxw" id="Bp7-B0-4CZ"/>
+                        <outlet property="livingBtn" destination="utY-Hi-hSq" id="Hrc-Dl-7GO"/>
+                        <outlet property="statusLabel" destination="kc6-6d-NhW" id="B5s-2N-2cm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="awG-OO-cCH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="456.80000000000001" y="-372.86356821589209"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="camera_change" width="40" height="40"/>
+        <image name="icon_beautifulface" width="19" height="19"/>
+        <image name="talk_close" width="40" height="40"/>
+    </resources>
+</document>

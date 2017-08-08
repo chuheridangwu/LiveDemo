@@ -103,6 +103,8 @@
 		30B8212B1F30227F0030EE63 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 30B8212A1F30227F0030EE63 /* libz.tbd */; };
 		30B8212D1F3022880030EE63 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 30B8212C1F3022880030EE63 /* libbz2.tbd */; };
 		30B821311F3022AB0030EE63 /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30B821301F3022AB0030EE63 /* IJKMediaFramework.framework */; };
+		30DA8EA61F385DFA008933BD /* ShowLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DA8EA51F385DFA008933BD /* ShowLiveViewController.m */; };
+		30DA8EAA1F387F5E008933BD /* ShowLiveViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DA8EA91F387F5E008933BD /* ShowLiveViewController.storyboard */; };
 		30E97F161F32BB8C00005A61 /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E97F151F32BB8B00005A61 /* Room.m */; };
 		7465116FAD0AD200C6F9BDD6 /* libPods-LiveDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FA32FE5CDD289FD82430EC8 /* libPods-LiveDemo.a */; };
 /* End PBXBuildFile section */
@@ -313,6 +315,9 @@
 		30B8212A1F30227F0030EE63 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		30B8212C1F3022880030EE63 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
 		30B821301F3022AB0030EE63 /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
+		30DA8EA41F385DFA008933BD /* ShowLiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowLiveViewController.h; sourceTree = "<group>"; };
+		30DA8EA51F385DFA008933BD /* ShowLiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowLiveViewController.m; sourceTree = "<group>"; };
+		30DA8EA91F387F5E008933BD /* ShowLiveViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ShowLiveViewController.storyboard; sourceTree = "<group>"; };
 		30E97F141F32BB8B00005A61 /* Room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Room.h; sourceTree = "<group>"; };
 		30E97F151F32BB8B00005A61 /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Room.m; sourceTree = "<group>"; };
 		4E6C00400CBEC5619ACD523B /* Pods-LiveDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiveDemo/Pods-LiveDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -563,6 +568,9 @@
 			children = (
 				309DD8D51F302BDD000CB180 /* UserLiveViewController.h */,
 				309DD8D61F302BDD000CB180 /* UserLiveViewController.m */,
+				30DA8EA41F385DFA008933BD /* ShowLiveViewController.h */,
+				30DA8EA51F385DFA008933BD /* ShowLiveViewController.m */,
+				30DA8EA91F387F5E008933BD /* ShowLiveViewController.storyboard */,
 			);
 			path = UserLive;
 			sourceTree = "<group>";
@@ -896,6 +904,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30DA8EAA1F387F5E008933BD /* ShowLiveViewController.storyboard in Resources */,
 				30A95A0A1F2ECB0F00DD9F4D /* Info.plist in Resources */,
 				3071BA231F306B88005493FE /* YZLiveCell.xib in Resources */,
 				3039E6481F31BEB900744DC5 /* MJRefresh.bundle in Resources */,
@@ -1040,6 +1049,7 @@
 				30A95A141F2ECB0F00DD9F4D /* ViewController+MASAdditions.m in Sources */,
 				3039E6451F31BEB900744DC5 /* MJRefreshGifHeader.m in Sources */,
 				30A95A131F2ECB0F00DD9F4D /* View+MASAdditions.m in Sources */,
+				30DA8EA61F385DFA008933BD /* ShowLiveViewController.m in Sources */,
 				3039E6471F31BEB900744DC5 /* MJRefreshStateHeader.m in Sources */,
 				30A95A9E1F2ED32F00DD9F4D /* UIImage+MultiFormat.m in Sources */,
 				3039E6491F31BEB900744DC5 /* MJRefreshConst.m in Sources */,
