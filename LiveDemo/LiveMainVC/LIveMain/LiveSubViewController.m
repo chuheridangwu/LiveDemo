@@ -10,11 +10,18 @@
 #import "AdmireAnimationView.h"
 #import "GiftContaierView.h"
 #import "RightAnchorListView.h"
+#import "LiveBottonBtnView.h"
+
+#import "CombinationShotScreen.h"
+#import "ShareScreenshotView.h"
+#import "CombinationShareView.h"
+
+
 
 #import <IJKMediaFramework/IJKMediaFramework.h>
 
 
-@interface LiveSubViewController ()<UIScrollViewDelegate,UIGestureRecognizerDelegate>
+@interface LiveSubViewController ()<UIScrollViewDelegate,UIGestureRecognizerDelegate,LiveBottonBtnViewDelegate,ShareScreenshotViewDelegate>
 @property (nonatomic, strong) IJKFFMoviePlayerController *player;
 
 @property (nonatomic, assign) BOOL                  clearViewShow;        //标记是否清爽模式
@@ -26,6 +33,9 @@
 
 @property (nonatomic, strong) AdmireAnimationView *admireAnimationView; //点赞动画
 @property (nonatomic, strong) RightAnchorListView *rightAnchorListView; //右边公麦私麦列表
+@property (nonatomic, strong) LiveBottonBtnView *bottonView; //底部按钮
+@property (nonatomic, strong) UIImage *shareImage;  //截图分享的图片
+@property (nonatomic, strong) ShareScreenshotView    *shareShotScreen;//截屏
 
 
 @end
@@ -49,8 +59,9 @@
     // Do any additional setup after loading the view.
     
     [self.view addSubview:self.player.view];
-    
     [self.view addSubview:self.clearBgView];
+    
+    [self.clearBgView addSubview:self.bottonView];
     
     _admireAnimationView = [[AdmireAnimationView alloc]initWithSuperView:self.view];
 
@@ -61,9 +72,9 @@
     
     [self.clearBgView addSubview:self.rightAnchorListView];
     
-    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(10, 100, 100, 100)];
+    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(10, 100, 40, 40)];
     [self.clearBgView addSubview:btn];
-    btn.backgroundColor = [UIColor redColor];
+    [btn setBackgroundImage:[UIImage imageNamed:@"talk_public"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(clickBtn) forControlEvents:UIControlEventTouchDown];
     
 
@@ -245,6 +256,97 @@
 }
 
 
+ //
+- (void)clickBtnIndex:(NSInteger)index{
+    NSLog(@"%ld",(long)index);
+    switch (index) {
+        case 0:
+        {
+            
+        }
+            break;
+        case 1:
+        {
+            [self takeScreenshot];
+        }
+            break;
+        case 2:
+        {
+            
+        }
+            break;
+        case 3:
+        {
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+// 截屏
+- (void)takeScreenshot{
+    UIImage *image = [UIImage takeScreenshot];
+    if(image){
+        //分享的加水印图片
+        self.shareImage = [UIImage addImage:image addMsakImage:[UIImage imageNamed:@"screenShot_img_9158live"] MaskImageRect:CGRectMake(SCREEN_WIDTH-10-197/2, 26.5, 197/2, 25)];;
+        //分享组合视图
+        CombinationShotScreen *shotView = [[CombinationShotScreen alloc] initWithImage:self.shareImage];
+        UIImage *shotViewImg = [UIImage screenView:shotView];
+        //分享视图
+        if (_shareShotScreen) {
+            [_shareShotScreen removeFromSuperview];
+            _shareShotScreen = nil;
+        }
+        _shareShotScreen = [[ShareScreenshotView alloc] initWithImage:shotViewImg shareImage:self.shareImage];
+        
+        _shareShotScreen.delegate = self;
+        
+        [_shareShotScreen show];
+       
+        [[UIApplication sharedApplication].keyWindow addSubview:_shareShotScreen];
+    }
+}
+
+#pragma mark -ShareScreenshotViewDelegate
+/** 点击分享 */
+- (void)clickButton:(ButtonType)nType
+{
+    [self shareShotScreenView:self.shareImage shareType:nType];
+}
+- (void)shareShotScreenView:(UIImage *)image shareType:(NSInteger)type
+{
+   
+    CombinationShareView *combin = [[CombinationShareView alloc] initWithImage:image address:@""];
+    image = [UIImage screenView:combin];
+    
+    [[ZThirdPartyShare sharedManager] shareWithImage:image shareType:type];
+    [self closeShareShot];
+}
+
+/** 隐藏ShareScreenshotView */
+- (void)hideShareScreenshotView:(BOOL)isHide
+{
+    
+}
+/** 是否保存照片 */
+- (void)savePhoto:(BOOL)isSave
+{
+    [self closeShareShot];
+}
+
+- (void)closeShareShot
+{
+    if (_shareShotScreen) {
+        [_shareShotScreen removeFromSuperview];
+        _shareShotScreen = nil;
+    }
+}
+
+
+
 #pragma mark    -------------    lazy
 
 - (IJKFFMoviePlayerController *)player{
@@ -297,6 +399,14 @@
         
     }
     return _rightAnchorListView;
+}
+
+- (LiveBottonBtnView*)bottonView{
+    if (!_bottonView) {
+        _bottonView = [[LiveBottonBtnView alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height - 60, self.view.mj_w - 60, 40)];
+        _bottonView.delegate = self;
+    }
+    return _bottonView;
 }
 
 - (void)didReceiveMemoryWarning {

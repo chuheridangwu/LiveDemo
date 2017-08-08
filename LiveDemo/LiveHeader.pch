@@ -17,6 +17,7 @@
 #import "AFNetworking.h"
 #import "MJExtension.h"
 #import "MJRefresh.h"
+#import "UIView+UIViewEx.h"
 #import <LFLiveKit.h>   // 推流框架
 
 
@@ -25,6 +26,9 @@
 
 //Category
 #import "ImageProessing.h"
+#import "UIImage+UIImageEx.h"
+#import "ZThirdPartyShare.h"
+
 
 
 
@@ -59,5 +63,13 @@
 colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
+
+#define KCColor(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a] //颜色
+#define kBlack(n)   KCColor(0, 0, 0, n) //黑色透明
+#define kWhite(n)   KCColor(255, 255, 255, n) //白色透明
+#define kSkinColor(n)  KCColor(0xff,0xe2,0x03, n)  //主色调透明
+#define kFontColor(n)  KCColor(0x69,0x45,0x1e, n)  //主色调字体
+
+#define kFont(n)       [UIFont systemFontOfSize:n] //字体
 
 #endif /* LiveHeader_pch */

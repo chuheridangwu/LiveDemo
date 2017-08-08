@@ -4,7 +4,8 @@
 //
 //  Created by dym on 2017/8/2.
 //  Copyright © 2017年 dym. All rights reserved.
-//
+
+//  点赞动画
 
 #import <UIKit/UIKit.h>
 
