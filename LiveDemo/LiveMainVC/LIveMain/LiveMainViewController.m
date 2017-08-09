@@ -34,8 +34,12 @@
 - (void)setDataSource:(NSArray*)source  curIndex:(NSInteger)curIndex{
     _dataArray = source;
     _curIndex = curIndex;
-    
+}
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 - (void)viewDidLoad {

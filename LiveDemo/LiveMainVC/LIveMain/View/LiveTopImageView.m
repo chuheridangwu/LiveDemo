@@ -95,7 +95,6 @@
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showBigUserList)];
         [_anchorBgView addGestureRecognizer:tap];
-        _anchorBgView.backgroundColor = [UIColor yellowColor];
 
         
         _anchorHeaderImage = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, 33, 33)];
@@ -198,10 +197,10 @@
 {
     WS(ws);
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
-        for (int i = 0; i < 5000; i ++ ) {
+        for (int i = 0; i < 5001; i ++ ) {
             NSString *str  = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1502787779&di=b7b1cd13ec2e29b845551844eeb8e0f1&imgtype=jpg&er=1&src=http%3A%2F%2Fp6.qhimg.com%2Ft0129d3a419067a42bb.jpg";
             [ws.dataArray addObject:str];
-            if (ws.dataArray.count == i) {
+            if (5000 == i) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [_collectionView reloadData];
                 });
@@ -287,22 +286,18 @@
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
-//    cell.backgroundColor  = [UIColor redColor];
-    
-    UIImageView *imgView1 = [[UIImageView alloc]initWithFrame:cell.bounds];
-    [cell.contentView addSubview:imgView1];
     
     UIImageView *imgView = [[UIImageView alloc]initWithFrame:cell.bounds];
-//    imgView.clipsToBounds = YES;
+    imgView.clipsToBounds = YES;
     imgView.layer.borderWidth = 1.5;
-//    imgView.layer.borderColor = [[UIColor whiteColor]CGColor];
+    imgView.layer.borderColor = [[UIColor whiteColor]CGColor];
     imgView.layer.cornerRadius = imgView.frame.size.width / 2;
     imgView.userInteractionEnabled = YES;
     [cell.contentView addSubview:imgView];
  
     
     NSString *item = _dataArray[indexPath.item];
-    [imgView sd_setImageWithURL:[NSURL URLWithString:item] placeholderImage:[[UIImage imageNamed:@"placeholder_head"] cutCircleImage]];
+    [imgView sd_setImageWithURL:[NSURL URLWithString:item] placeholderImage:[UIImage imageNamed:@"placeholder_head"]];
     
     
     return cell;

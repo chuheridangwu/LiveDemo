@@ -116,10 +116,10 @@
 {
     WS(ws);
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),^{
-        for (int i = 0; i < 5000; i ++ ) {
+        for (int i = 0; i < 5001; i ++ ) {
             NSString *str  = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1502787779&di=b7b1cd13ec2e29b845551844eeb8e0f1&imgtype=jpg&er=1&src=http%3A%2F%2Fp6.qhimg.com%2Ft0129d3a419067a42bb.jpg";
             [ws.dataArray addObject:str];
-            if (ws.dataArray.count == i) {
+            if (i == 5000) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [_collectionView reloadData];
                 });
