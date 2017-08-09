@@ -150,6 +150,7 @@
 
 
 
+#import "UserLisetCell.h"
 
 //用户头像列表
 @interface SHTopUserList()<UICollectionViewDataSource,UICollectionViewDelegate>
@@ -261,7 +262,7 @@
     _collectionView.showsHorizontalScrollIndicator = NO;
     [self addSubview:_collectionView];
     _maskLayer.frame = _collectionView.frame;
-    [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
+    [_collectionView registerClass:[UserLisetCell class] forCellWithReuseIdentifier:@"UserLisetCell"];
     
     UIPanGestureRecognizer *gesture = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(touchDidMove:)];
     [self addGestureRecognizer:gesture];
@@ -285,7 +286,7 @@
 
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
+    UserLisetCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UserLisetCell" forIndexPath:indexPath];
     
     UIImageView *imgView = [[UIImageView alloc]initWithFrame:cell.bounds];
     imgView.clipsToBounds = YES;
