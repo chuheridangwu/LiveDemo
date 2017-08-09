@@ -1,12 +1,17 @@
 PODS:
   - LFLiveKit (1.9.6)
+  - SDWebImage (3.7.6):
+    - SDWebImage/Core (= 3.7.6)
+  - SDWebImage/Core (3.7.6)
 
 DEPENDENCIES:
   - LFLiveKit (~> 1.6)
+  - SDWebImage (~> 3.7.5)
 
 SPEC CHECKSUMS:
   LFLiveKit: 3944fe79d51e171e391f5c980de4b9ecdb7de957
+  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
 
-PODFILE CHECKSUM: d1fbc93d6827cb09982e7f03882783722ab13976
+PODFILE CHECKSUM: bf48bd86463af6da5e78494b971dd9c04f5aee37
 
 COCOAPODS: 1.2.1
