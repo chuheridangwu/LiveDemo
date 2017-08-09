@@ -128,6 +128,13 @@
 		30DA8FB21F39AD8E008933BD /* SHLongTitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DA8FB11F39AD8E008933BD /* SHLongTitleLabel.m */; };
 		30DA8FB71F39C991008933BD /* UserListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DA8FB61F39C991008933BD /* UserListView.m */; };
 		30DA8FBE1F3AAADE008933BD /* UserLisetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DA8FBD1F3AAADE008933BD /* UserLisetCell.m */; };
+		30DA8FC31F3AE5FC008933BD /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 30DA8FC21F3AE5FC008933BD /* libicucore.tbd */; };
+		30DA8FC51F3AE606008933BD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30DA8FC41F3AE606008933BD /* QuartzCore.framework */; };
+		30DA8FC71F3AE75A008933BD /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 30DA8FC61F3AE75A008933BD /* libc++.tbd */; };
+		30DA8FCC1F3AEA8D008933BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30DA8FCB1F3AEA8D008933BD /* Foundation.framework */; };
+		30DA8FCF1F3AECE3008933BD /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30DA8FCE1F3AECE3008933BD /* iflyMSC.framework */; };
+		30DA8FD11F3AED75008933BD /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30DA8FD01F3AED74008933BD /* AddressBookUI.framework */; };
+		30DA8FD31F3AED80008933BD /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30DA8FD21F3AED80008933BD /* AddressBook.framework */; };
 		30E97F161F32BB8C00005A61 /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E97F151F32BB8B00005A61 /* Room.m */; };
 		7465116FAD0AD200C6F9BDD6 /* libPods-LiveDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FA32FE5CDD289FD82430EC8 /* libPods-LiveDemo.a */; };
 /* End PBXBuildFile section */
@@ -388,6 +395,13 @@
 		30DA8FB61F39C991008933BD /* UserListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserListView.m; sourceTree = "<group>"; };
 		30DA8FBC1F3AAADE008933BD /* UserLisetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLisetCell.h; sourceTree = "<group>"; };
 		30DA8FBD1F3AAADE008933BD /* UserLisetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLisetCell.m; sourceTree = "<group>"; };
+		30DA8FC21F3AE5FC008933BD /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		30DA8FC41F3AE606008933BD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		30DA8FC61F3AE75A008933BD /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		30DA8FCB1F3AEA8D008933BD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		30DA8FCE1F3AECE3008933BD /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iflyMSC.framework; sourceTree = "<group>"; };
+		30DA8FD01F3AED74008933BD /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		30DA8FD21F3AED80008933BD /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		30E97F141F32BB8B00005A61 /* Room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Room.h; sourceTree = "<group>"; };
 		30E97F151F32BB8B00005A61 /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Room.m; sourceTree = "<group>"; };
 		4E6C00400CBEC5619ACD523B /* Pods-LiveDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiveDemo/Pods-LiveDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -399,6 +413,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30DA8FD31F3AED80008933BD /* AddressBook.framework in Frameworks */,
+				30DA8FD11F3AED75008933BD /* AddressBookUI.framework in Frameworks */,
+				30DA8FCC1F3AEA8D008933BD /* Foundation.framework in Frameworks */,
+				30DA8FC31F3AE5FC008933BD /* libicucore.tbd in Frameworks */,
+				30DA8FC71F3AE75A008933BD /* libc++.tbd in Frameworks */,
+				30DA8FC51F3AE606008933BD /* QuartzCore.framework in Frameworks */,
 				30DA8F5C1F3999FF008933BD /* libsqlite3.tbd in Frameworks */,
 				30DA8F301F399845008933BD /* CoreTelephony.framework in Frameworks */,
 				30DA8F2E1F39983E008933BD /* CoreGraphics.framework in Frameworks */,
@@ -407,6 +427,7 @@
 				30DA8F281F399822008933BD /* Security.framework in Frameworks */,
 				30B8212D1F3022880030EE63 /* libbz2.tbd in Frameworks */,
 				30B8212B1F30227F0030EE63 /* libz.tbd in Frameworks */,
+				30DA8FCF1F3AECE3008933BD /* iflyMSC.framework in Frameworks */,
 				30B821291F3022790030EE63 /* AudioToolbox.framework in Frameworks */,
 				30DA8F3A1F399916008933BD /* TencentOpenAPI.framework in Frameworks */,
 				30B821271F3022730030EE63 /* AVFoundation.framework in Frameworks */,
@@ -747,6 +768,7 @@
 		30A959EE1F2ECB0800DD9F4D /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				30DA8FCD1F3AECE3008933BD /* lib */,
 				30DA8ECC1F39921C008933BD /* ThirdPartyAuthManager */,
 				30660D481F383A3A0073EDCF /* Category */,
 				3039E60B1F31BEB900744DC5 /* MJRefresh */,
@@ -817,6 +839,12 @@
 		30B821191F3022470030EE63 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				30DA8FD21F3AED80008933BD /* AddressBook.framework */,
+				30DA8FD01F3AED74008933BD /* AddressBookUI.framework */,
+				30DA8FCB1F3AEA8D008933BD /* Foundation.framework */,
+				30DA8FC61F3AE75A008933BD /* libc++.tbd */,
+				30DA8FC41F3AE606008933BD /* QuartzCore.framework */,
+				30DA8FC21F3AE5FC008933BD /* libicucore.tbd */,
 				30DA8F5B1F3999FF008933BD /* libsqlite3.tbd */,
 				30DA8F2F1F399845008933BD /* CoreTelephony.framework */,
 				30DA8F2D1F39983E008933BD /* CoreGraphics.framework */,
@@ -969,6 +997,14 @@
 				30DA8FBD1F3AAADE008933BD /* UserLisetCell.m */,
 			);
 			path = UserListView;
+			sourceTree = "<group>";
+		};
+		30DA8FCD1F3AECE3008933BD /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				30DA8FCE1F3AECE3008933BD /* iflyMSC.framework */,
+			);
+			path = lib;
 			sourceTree = "<group>";
 		};
 		30E97F131F32BB2E00005A61 /* Model */ = {
@@ -1424,11 +1460,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = SU8CUDZ2G4;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LiveDemo",
 					"$(PROJECT_DIR)/LiveDemo/ThirdParty",
 					"$(PROJECT_DIR)/LiveDemo/ThirdParty/QQ",
+					"$(PROJECT_DIR)/LiveDemo/ThirdParty/lib",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LiveDemo/LiveHeader.pch";
 				INFOPLIST_FILE = LiveDemo/Info.plist;
@@ -1452,11 +1490,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = SU8CUDZ2G4;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LiveDemo",
 					"$(PROJECT_DIR)/LiveDemo/ThirdParty",
 					"$(PROJECT_DIR)/LiveDemo/ThirdParty/QQ",
+					"$(PROJECT_DIR)/LiveDemo/ThirdParty/lib",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/LiveDemo/LiveHeader.pch";
 				INFOPLIST_FILE = LiveDemo/Info.plist;
