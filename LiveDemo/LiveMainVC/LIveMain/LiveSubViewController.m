@@ -11,10 +11,12 @@
 #import "GiftContaierView.h"
 #import "RightAnchorListView.h"
 #import "LiveBottonBtnView.h"
+#import "LiveTopImageView.h"
 
 #import "CombinationShotScreen.h"
 #import "ShareScreenshotView.h"
 #import "CombinationShareView.h"
+#import "UserListView.h"
 
 
 
@@ -36,7 +38,7 @@
 @property (nonatomic, strong) LiveBottonBtnView *bottonView; //底部按钮
 @property (nonatomic, strong) UIImage *shareImage;  //截图分享的图片
 @property (nonatomic, strong) ShareScreenshotView    *shareShotScreen;//截屏
-
+@property (nonatomic, strong) LiveTopImageView  *topUserListView; //头部用户列表
 
 @end
 
@@ -62,6 +64,7 @@
     [self.view addSubview:self.clearBgView];
     
     [self.clearBgView addSubview:self.bottonView];
+    [self.clearBgView addSubview:self.topUserListView];
     
     _admireAnimationView = [[AdmireAnimationView alloc]initWithSuperView:self.view];
 
@@ -348,7 +351,6 @@
 
 
 #pragma mark    -------------    lazy
-
 - (IJKFFMoviePlayerController *)player{
     if (!_player) {
         // 拉流地址
@@ -359,7 +361,6 @@
         
         // 准备播放
         [playerVc prepareToPlay];
-        
         
         playerVc.view.frame = [UIScreen mainScreen].bounds;
         
@@ -408,6 +409,15 @@
     }
     return _bottonView;
 }
+
+- (LiveTopImageView*)topUserListView{
+    if (!_topUserListView) {
+        _topUserListView = [[LiveTopImageView alloc]initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH, 55)];
+        _topUserListView.vc = self;
+    }
+    return _topUserListView;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

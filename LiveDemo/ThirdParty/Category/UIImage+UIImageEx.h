@@ -29,7 +29,10 @@ typedef enum {
 
 - (UIImage*)gradientImageWithBounds:(CGRect)bounds andColors:(NSArray*)colors andGradientType:(int)gradientType;
 
+- (UIImage *)cutCircleImage;
+
 + (UIImage *)clipCircleImage:(UIImage *)image;
+
 + (UIImage *)clipRectangle:(UIImage *)image WRatio:(float)WRatio HRatio:(float)HRatio;
 /** 获取截屏图片 */
 + (UIImage *)takeScreenshot;

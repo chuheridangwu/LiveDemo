@@ -81,6 +81,7 @@
     
 }
 
+
 - (UIImage *)cutCircleImage {
     UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0);
     // 获取上下文

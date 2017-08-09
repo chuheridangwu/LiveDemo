@@ -26,7 +26,7 @@ static NSString *identifi = @"anchorList";
 
 
 - (instancetype)initWithFrame:(CGRect)frame{
-    CGFloat width = 95;
+    CGFloat width = 75;
     if (iPhone5) {
         width = 65;
     }
@@ -59,8 +59,8 @@ static NSString *identifi = @"anchorList";
     layou.itemSize = CGSizeMake(width, width);
     layou.minimumLineSpacing = 20;
     layou.minimumInteritemSpacing = 0;
-    layou.sectionInset = UIEdgeInsetsMake(20, 0, 20, 0);
     layou.scrollDirection = UICollectionViewScrollDirectionVertical;
+    layou.sectionInset = UIEdgeInsetsMake(20, 0, 20, 0);
     
     self.dataArray = [Room currentRoom].liveArray;
     _collectionView = [[UICollectionView alloc]initWithFrame:self.bounds collectionViewLayout:layou];

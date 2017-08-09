@@ -138,6 +138,10 @@
 		30DA8FA51F399DCD008933BD /* CombinationShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DA8FA41F399DCD008933BD /* CombinationShareView.m */; };
 		30DA8FA81F399F52008933BD /* ZThirdPartyShare.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DA8FA71F399F52008933BD /* ZThirdPartyShare.m */; };
 		30DA8FAB1F39A17F008933BD /* UIView+UIViewEx.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DA8FAA1F39A17F008933BD /* UIView+UIViewEx.m */; };
+		30DA8FAE1F39AABC008933BD /* LiveTopImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DA8FAD1F39AABC008933BD /* LiveTopImageView.m */; };
+		30DA8FB21F39AD8E008933BD /* SHLongTitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DA8FB11F39AD8E008933BD /* SHLongTitleLabel.m */; };
+		30DA8FB71F39C991008933BD /* UserListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DA8FB61F39C991008933BD /* UserListView.m */; };
+		30DA8FBE1F3AAADE008933BD /* UserLisetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DA8FBD1F3AAADE008933BD /* UserLisetCell.m */; };
 		30E97F161F32BB8C00005A61 /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E97F151F32BB8B00005A61 /* Room.m */; };
 		7465116FAD0AD200C6F9BDD6 /* libPods-LiveDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FA32FE5CDD289FD82430EC8 /* libPods-LiveDemo.a */; };
 /* End PBXBuildFile section */
@@ -419,6 +423,14 @@
 		30DA8FA71F399F52008933BD /* ZThirdPartyShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZThirdPartyShare.m; path = Managers/ZThirdPartyShare.m; sourceTree = "<group>"; };
 		30DA8FA91F39A17F008933BD /* UIView+UIViewEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+UIViewEx.h"; sourceTree = "<group>"; };
 		30DA8FAA1F39A17F008933BD /* UIView+UIViewEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+UIViewEx.m"; sourceTree = "<group>"; };
+		30DA8FAC1F39AABC008933BD /* LiveTopImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveTopImageView.h; sourceTree = "<group>"; };
+		30DA8FAD1F39AABC008933BD /* LiveTopImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveTopImageView.m; sourceTree = "<group>"; };
+		30DA8FB01F39AD8E008933BD /* SHLongTitleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHLongTitleLabel.h; sourceTree = "<group>"; };
+		30DA8FB11F39AD8E008933BD /* SHLongTitleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHLongTitleLabel.m; sourceTree = "<group>"; };
+		30DA8FB51F39C991008933BD /* UserListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserListView.h; sourceTree = "<group>"; };
+		30DA8FB61F39C991008933BD /* UserListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserListView.m; sourceTree = "<group>"; };
+		30DA8FBC1F3AAADE008933BD /* UserLisetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLisetCell.h; sourceTree = "<group>"; };
+		30DA8FBD1F3AAADE008933BD /* UserLisetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLisetCell.m; sourceTree = "<group>"; };
 		30E97F141F32BB8B00005A61 /* Room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Room.h; sourceTree = "<group>"; };
 		30E97F151F32BB8B00005A61 /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Room.m; sourceTree = "<group>"; };
 		4E6C00400CBEC5619ACD523B /* Pods-LiveDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiveDemo/Pods-LiveDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -482,6 +494,9 @@
 				304AF6C71F34454A00337BAF /* RightAnchorListView.m */,
 				30DA8EC21F395E9E008933BD /* LiveBottonBtnView.h */,
 				30DA8EC31F395E9E008933BD /* LiveBottonBtnView.m */,
+				30DA8FAC1F39AABC008933BD /* LiveTopImageView.h */,
+				30DA8FAD1F39AABC008933BD /* LiveTopImageView.m */,
+				30DA8FB41F39C97E008933BD /* UserListView */,
 				30DA8F601F399D19008933BD /* ShareView */,
 				30DA8EC51F398DD4008933BD /* ChatView */,
 				3039E64E1F31DA9300744DC5 /* GiftView */,
@@ -598,6 +613,8 @@
 		30660D481F383A3A0073EDCF /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				30DA8FB01F39AD8E008933BD /* SHLongTitleLabel.h */,
+				30DA8FB11F39AD8E008933BD /* SHLongTitleLabel.m */,
 				30DA8FA91F39A17F008933BD /* UIView+UIViewEx.h */,
 				30DA8FAA1F39A17F008933BD /* UIView+UIViewEx.m */,
 				30DA8EC91F399096008933BD /* UIImage+UIImageEx.h */,
@@ -1023,6 +1040,17 @@
 			path = ShareView;
 			sourceTree = "<group>";
 		};
+		30DA8FB41F39C97E008933BD /* UserListView */ = {
+			isa = PBXGroup;
+			children = (
+				30DA8FB51F39C991008933BD /* UserListView.h */,
+				30DA8FB61F39C991008933BD /* UserListView.m */,
+				30DA8FBC1F3AAADE008933BD /* UserLisetCell.h */,
+				30DA8FBD1F3AAADE008933BD /* UserLisetCell.m */,
+			);
+			path = UserListView;
+			sourceTree = "<group>";
+		};
 		30E97F131F32BB2E00005A61 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1240,6 +1268,7 @@
 			files = (
 				30A95A121F2ECB0F00DD9F4D /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				3071BA3D1F306BA8005493FE /* MJPropertyKey.m in Sources */,
+				30DA8FBE1F3AAADE008933BD /* UserLisetCell.m in Sources */,
 				3071BA3A1F306BA8005493FE /* MJExtensionConst.m in Sources */,
 				30DA8FA81F399F52008933BD /* ZThirdPartyShare.m in Sources */,
 				30DA8F551F3999BA008933BD /* GetMessageFromWXResp+responseWithTextOrMediaMessage.m in Sources */,
@@ -1248,6 +1277,7 @@
 				30A95A0B1F2ECB0F00DD9F4D /* MASCompositeConstraint.m in Sources */,
 				3071BA3E1F306BA8005493FE /* MJPropertyType.m in Sources */,
 				3039E63B1F31BEB900744DC5 /* MJRefreshBackFooter.m in Sources */,
+				30DA8FB21F39AD8E008933BD /* SHLongTitleLabel.m in Sources */,
 				309DD8D71F302BDD000CB180 /* UserLiveViewController.m in Sources */,
 				30A95A111F2ECB0F00DD9F4D /* NSArray+MASAdditions.m in Sources */,
 				3039E64D1F31BEB900744DC5 /* UIView+MJExtension.m in Sources */,
@@ -1278,6 +1308,7 @@
 				30DA8FA21F399D2F008933BD /* ShareScreenshotView.m in Sources */,
 				30A959C01F2ECAB500DD9F4D /* AppDelegate.m in Sources */,
 				30A95A9B1F2ED32F00DD9F4D /* SDWebImagePrefetcher.m in Sources */,
+				30DA8FAE1F39AABC008933BD /* LiveTopImageView.m in Sources */,
 				30A95AA01F2ED32F00DD9F4D /* UIImageView+WebCache.m in Sources */,
 				304AF6C81F34454A00337BAF /* RightAnchorListView.m in Sources */,
 				3071BA3F1F306BA8005493FE /* NSObject+MJClass.m in Sources */,
@@ -1305,6 +1336,7 @@
 				3071BA221F306B88005493FE /* YZLiveCell.m in Sources */,
 				30A95A961F2ED32F00DD9F4D /* SDWebImageCompat.m in Sources */,
 				30DA8FAB1F39A17F008933BD /* UIView+UIViewEx.m in Sources */,
+				30DA8FB71F39C991008933BD /* UserListView.m in Sources */,
 				30DA8ED41F39921C008933BD /* TencentManager.m in Sources */,
 				3071BA4D1F3083EE005493FE /* LiveSubViewController.m in Sources */,
 				3071BA3B1F306BA8005493FE /* MJFoundation.m in Sources */,

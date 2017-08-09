@@ -28,6 +28,8 @@
 #import "ImageProessing.h"
 #import "UIImage+UIImageEx.h"
 #import "ZThirdPartyShare.h"
+#import "SHLongTitleLabel.h"
+
 
 
 
