@@ -15,8 +15,28 @@ typedef NS_ENUM(NSInteger)
     EditingTypeSend     //准备发送
 }EditingType;
 
+@protocol XBPublicChatViewDelegate;
 @interface PublicChatView : UIView
+@property (nonatomic, assign) EditingType editType;
+@property (nonatomic, strong) UIView *bottomBgView;
+
+@property (nonatomic, weak) id<XBPublicChatViewDelegate> delegate;
+@property (nonatomic, assign) BOOL isShow;
 
 
-+ (void)showChatView;
+- (id)initWithSuperView:(UIView *)superView;
+
+
+@end
+
+
+@protocol XBPublicChatViewDelegate <NSObject>
+
+- (void)touchPublicChatView;
+//- (void)touchPublicUserNameWithUser:(User*)user;
+- (void)touchPublicUrlWithUrlSting:(NSString*)urlString;
+- (void)touchPublicshare;
+- (void)publicChatViewShouldShow;
+- (void)publicChatViewDidClose;
+
 @end

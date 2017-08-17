@@ -51,6 +51,8 @@
 		3071BA431F306BA8005493FE /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3071BA391F306BA8005493FE /* NSString+MJExtension.m */; };
 		3071BA481F307366005493FE /* LiveMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3071BA471F307366005493FE /* LiveMainViewController.m */; };
 		3071BA4D1F3083EE005493FE /* LiveSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3071BA4C1F3083ED005493FE /* LiveSubViewController.m */; };
+		308234831F456F62002C34F7 /* VoicePromptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 308234821F456F62002C34F7 /* VoicePromptView.m */; };
+		308234871F457D27002C34F7 /* GiftBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 308234861F457D27002C34F7 /* GiftBarView.m */; };
 		309DD8D71F302BDD000CB180 /* UserLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 309DD8D61F302BDD000CB180 /* UserLiveViewController.m */; };
 		309DD8DC1F30688A000CB180 /* LiveListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 309DD8DB1F30688A000CB180 /* LiveListViewController.m */; };
 		30A959BD1F2ECAB500DD9F4D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A959BC1F2ECAB500DD9F4D /* main.m */; };
@@ -245,6 +247,10 @@
 		3071BA471F307366005493FE /* LiveMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveMainViewController.m; sourceTree = "<group>"; };
 		3071BA4B1F3083ED005493FE /* LiveSubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveSubViewController.h; sourceTree = "<group>"; };
 		3071BA4C1F3083ED005493FE /* LiveSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveSubViewController.m; sourceTree = "<group>"; };
+		308234811F456F62002C34F7 /* VoicePromptView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoicePromptView.h; sourceTree = "<group>"; };
+		308234821F456F62002C34F7 /* VoicePromptView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoicePromptView.m; sourceTree = "<group>"; };
+		308234851F457D27002C34F7 /* GiftBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiftBarView.h; sourceTree = "<group>"; };
+		308234861F457D27002C34F7 /* GiftBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiftBarView.m; sourceTree = "<group>"; };
 		309DD8D51F302BDD000CB180 /* UserLiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLiveViewController.h; sourceTree = "<group>"; };
 		309DD8D61F302BDD000CB180 /* UserLiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLiveViewController.m; sourceTree = "<group>"; };
 		309DD8DA1F30688A000CB180 /* LiveListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LiveListViewController.h; path = ../LiveListViewController.h; sourceTree = "<group>"; };
@@ -474,6 +480,7 @@
 				30DA8EC31F395E9E008933BD /* LiveBottonBtnView.m */,
 				30DA8FAC1F39AABC008933BD /* LiveTopImageView.h */,
 				30DA8FAD1F39AABC008933BD /* LiveTopImageView.m */,
+				308234841F457AE2002C34F7 /* GiftListView */,
 				30DA8FB41F39C97E008933BD /* UserListView */,
 				30DA8F601F399D19008933BD /* ShareView */,
 				30DA8EC51F398DD4008933BD /* ChatView */,
@@ -676,6 +683,15 @@
 			path = LIveMain;
 			sourceTree = "<group>";
 		};
+		308234841F457AE2002C34F7 /* GiftListView */ = {
+			isa = PBXGroup;
+			children = (
+				308234851F457D27002C34F7 /* GiftBarView.h */,
+				308234861F457D27002C34F7 /* GiftBarView.m */,
+			);
+			path = GiftListView;
+			sourceTree = "<group>";
+		};
 		309DD8D41F302BCE000CB180 /* UserLive */ = {
 			isa = PBXGroup;
 			children = (
@@ -871,6 +887,8 @@
 			children = (
 				30DA8EC61F398DFF008933BD /* PublicChatView.h */,
 				30DA8EC71F398DFF008933BD /* PublicChatView.m */,
+				308234811F456F62002C34F7 /* VoicePromptView.h */,
+				308234821F456F62002C34F7 /* VoicePromptView.m */,
 			);
 			path = ChatView;
 			sourceTree = "<group>";
@@ -1266,9 +1284,11 @@
 				3039E60A1F31BC6F00744DC5 /* AdmireAnimationView.m in Sources */,
 				30A95A311F2ED21300DD9F4D /* AFNetworkReachabilityManager.m in Sources */,
 				30DA8ED51F39921C008933BD /* WeiboManager.m in Sources */,
+				308234831F456F62002C34F7 /* VoicePromptView.m in Sources */,
 				30DA8EC41F395E9E008933BD /* LiveBottonBtnView.m in Sources */,
 				3039E64B1F31BEB900744DC5 /* UIScrollView+MJExtension.m in Sources */,
 				30A95A0E1F2ECB0F00DD9F4D /* MASLayoutConstraint.m in Sources */,
+				308234871F457D27002C34F7 /* GiftBarView.m in Sources */,
 				30DA8F5F1F399CC9008933BD /* CombinationShotScreen.m in Sources */,
 				3071BA481F307366005493FE /* LiveMainViewController.m in Sources */,
 				30DA8FA51F399DCD008933BD /* CombinationShareView.m in Sources */,

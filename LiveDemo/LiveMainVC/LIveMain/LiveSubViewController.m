@@ -17,13 +17,14 @@
 #import "ShareScreenshotView.h"
 #import "CombinationShareView.h"
 #import "UserListView.h"
+#import "PublicChatView.h"
 
 
 
 #import <IJKMediaFramework/IJKMediaFramework.h>
 
 
-@interface LiveSubViewController ()<UIScrollViewDelegate,UIGestureRecognizerDelegate,LiveBottonBtnViewDelegate,ShareScreenshotViewDelegate>
+@interface LiveSubViewController ()<UIScrollViewDelegate,UIGestureRecognizerDelegate,LiveBottonBtnViewDelegate,ShareScreenshotViewDelegate,XBPublicChatViewDelegate>
 @property (nonatomic, strong) IJKFFMoviePlayerController *player;
 
 @property (nonatomic, assign) BOOL                  clearViewShow;        //标记是否清爽模式
@@ -39,7 +40,7 @@
 @property (nonatomic, strong) UIImage *shareImage;  //截图分享的图片
 @property (nonatomic, strong) ShareScreenshotView    *shareShotScreen;//截屏
 @property (nonatomic, strong) LiveTopImageView  *topUserListView; //头部用户列表
-
+@property (nonatomic, strong) PublicChatView  *chatView; //文字输入
 @end
 
 @implementation LiveSubViewController
@@ -62,12 +63,19 @@
     
     [self.view addSubview:self.player.view];
     [self.view addSubview:self.clearBgView];
+    _admireAnimationView = [[AdmireAnimationView alloc]initWithSuperView:self.view];
+
+    
+    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(10, 100, 40, 40)];
+    [self.clearBgView addSubview:btn];
+    [btn setBackgroundImage:[UIImage imageNamed:@"talk_public"] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(clickBtn) forControlEvents:UIControlEventTouchDown];
     
     [self.clearBgView addSubview:self.bottonView];
     [self.clearBgView addSubview:self.topUserListView];
-    
-    _admireAnimationView = [[AdmireAnimationView alloc]initWithSuperView:self.view];
+    [self.clearBgView addSubview:self.chatView];
 
+    
     GiftContaierView *containerView = [GiftContaierView sharedInstance];
     [containerView setFrame:CGRectMake(10, SCREEN_HEIGHT - 150 + 31 - CGRectGetHeight(containerView.frame), 45, CGRectGetHeight(containerView.frame))];
     [self.clearBgView addSubview:containerView];
@@ -75,10 +83,7 @@
     
     [self.clearBgView addSubview:self.rightAnchorListView];
     
-    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(10, 100, 40, 40)];
-    [self.clearBgView addSubview:btn];
-    [btn setBackgroundImage:[UIImage imageNamed:@"talk_public"] forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(clickBtn) forControlEvents:UIControlEventTouchDown];
+  
     
 
     
@@ -93,7 +98,7 @@
 }
 
 #pragma mark   --   点赞动画
-- (void)tapAndima{
+- (void)showAnimation{
     [_admireAnimationView startWithLevel:1 number:1];
 }
 
@@ -265,7 +270,7 @@
     switch (index) {
         case 0:
         {
-            
+            [self showPublicChatView];
         }
             break;
         case 1:
@@ -289,7 +294,7 @@
     }
 }
 
-// 截屏
+#pragma mark ----  截屏
 - (void)takeScreenshot{
     UIImage *image = [UIImage takeScreenshot];
     if(image){
@@ -349,6 +354,105 @@
 }
 
 
+#pragma mark  ---   聊天窗口
+- (void)showPublicChatView{
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardChanged:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardChanged:) name:UIKeyboardWillHideNotification object:nil];
+    self.chatView.isShow = YES;
+    self.chatView.bottomBgView.hidden = NO;
+//    if([UIconfig sharedInstance].closeBtnState != CloseBtnPositionRightTop)
+//        if (_delegate && [_delegate respondsToSelector:@selector(cancelBtnShouldHidden:)])
+//        {
+//            [_delegate cancelBtnShouldHidden:YES];
+//        }
+    [UIView animateWithDuration:0.2 animations:^{
+        self.chatView.bottomBgView.frame = CGRectMake(0,SCREEN_HEIGHT - 50, SCREEN_WIDTH, 60);
+    }];
+}
+
+- (void)keyboardChanged:(NSNotification *) notif{
+    NSTimeInterval animationDuration;
+    UIViewAnimationCurve animationCurve;
+    CGRect keyboardEndFrame;
+    NSDictionary *info = [notif userInfo];
+    [[info objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
+    [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
+    [[info objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEndFrame];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    [UIView setAnimationCurve:animationCurve];
+    if (notif.name == UIKeyboardWillShowNotification) {
+        self.clearBgView.mj_y =  - keyboardEndFrame.size.height ;
+        
+    }else{
+        
+        if (self.clearBgView.mj_y != 0)
+        {
+            self.clearBgView.mj_y = 0;
+        }
+    }
+    [UIView commitAnimations];
+}
+
+#pragma mark  -- XBPublicChatViewDelegate
+- (void)touchPublicChatView{
+    if (![self creatShowView]) {
+        [self showAnimation];
+    }
+}
+
+
+
+/*
+ * 确认弹出的控件，全收回
+ */
+- (bool)creatShowView
+{
+    BOOL isShareBtn = NO;
+    bool haveShow = NO;
+//    if (self.gifBar.isShow) {
+//        [self.gifBar close];
+//        haveShow = YES;
+//    }
+//    if (self.privateChatView.isShow) {
+//        [self.privateChatView closeView];
+//        haveShow = YES;
+//    }
+//    if (self.shareView.isShareViewShow)
+//    {
+//        [self.shareView close];
+//        haveShow = YES;
+//        isShareBtn = YES;
+//    }
+    if (self.chatView.isShow) {
+        self.chatView.isShow = NO;
+        haveShow = YES;
+    }
+//    if (_anchorView.isShow) {
+//        self.chatViewTabBar.isDown = NO;
+//        [self.chatViewTabBar leftAnchorTap];
+//        haveShow = YES;
+//    }
+//    if (_settingBar && _settingBar.isShow) {
+//        [_settingBar close];
+//        haveShow = YES;
+//    }
+    
+//    if (haveShow) {
+//        [self isHiddenBottomView:NO];
+//    }
+//    roomCanScroll = YES;
+//    
+//    if (isShareBtn == NO) {
+//        GiftContaierView *containerView = [GiftContaierView sharedInstance];
+//        [containerView setFrame:CGRectMake(10, CGRectGetMinY(self.publicChatView.frame) - CGRectGetHeight(containerView.frame), 45, CGRectGetHeight(containerView.frame))];
+//        [containerView changeDisplayCount:ROOM_BOTTOM_NONE];
+//    }
+    
+    return haveShow;
+}
+
+
 
 #pragma mark    -------------    lazy
 - (IJKFFMoviePlayerController *)player{
@@ -383,7 +487,7 @@
         UIButton *btn = [[UIButton alloc]initWithFrame:self.view.bounds];
         [_clearBgView addSubview:btn];
         btn.backgroundColor = [UIColor clearColor];
-        [btn addTarget:self action:@selector(tapAndima) forControlEvents:UIControlEventTouchDown];
+        [btn addTarget:self action:@selector(showAnimation) forControlEvents:UIControlEventTouchDown];
     }
     return _clearBgView;
 }
@@ -416,6 +520,14 @@
         _topUserListView.vc = self;
     }
     return _topUserListView;
+}
+
+- (PublicChatView*)chatView{
+    if (!_chatView) {
+        _chatView = [[PublicChatView alloc]initWithSuperView:self.clearBgView];
+        _chatView.delegate = self;
+    }
+    return _chatView;
 }
 
 
