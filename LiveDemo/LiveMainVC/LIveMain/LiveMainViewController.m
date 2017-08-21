@@ -49,7 +49,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.scrollView];
-//    [self.view addSubview:[self closePlayerBtn]];
+    [self.view addSubview:[self closePlayerBtn]];
+    
     
     [self resetScrollContent:_curIndex];
     
